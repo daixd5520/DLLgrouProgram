@@ -1,9 +1,9 @@
 /*
-	é¡¹ç›®åç§°ï¼šä½›è¥¿æ°´å§ç®¡ç†ç³»ç»Ÿ
-	ç»„å‘˜ï¼šå•å“æ´‹,ç½—é¦™é›¨,æˆ´æ˜•ç¬›ï¼ˆç»„é•¿ï¼‰
+	ÏîÄ¿Ãû³Æ£º·ğÎ÷Ë®°É¹ÜÀíÏµÍ³
+	×éÔ±£ºÂÀ×¿Ñó,ÂŞÏãÓê,´÷ê¿µÑ£¨×é³¤£©
 */
 
-//å¤´æ–‡ä»¶ 
+//Í·ÎÄ¼ş 
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -11,51 +11,51 @@
 #include<windows.h>
 #include<string.h>
 #pragma warning(disable:4996)
-//å®å®šä¹‰
-#define M  sizeof(struct User)//ç”¨æˆ·è¡¨çš„å¤§å° 
+//ºê¶¨Òå
+#define M  sizeof(struct User)//ÓÃ»§±íµÄ´óĞ¡ 
 ///////////////////////////////
-#define Q  sizeof(struct Drink) //é¥®å“è¡¨å¤§å° 
-#define X  sizeof(struct Table)//é¤æ¡Œè¡¨å¤§å° 
-#define Y  sizeof(struct Form)//è®¢å•è¡¨å¤§å° 
+#define Q  sizeof(struct Drink) //ÒûÆ·±í´óĞ¡ 
+#define X  sizeof(struct Table)//²Í×À±í´óĞ¡ 
+#define Y  sizeof(struct Form)//¶©µ¥±í´óĞ¡ 
 
-//ç»“æ„ä½“
-unsigned int store[8];//0æ˜¯æ°´(mL),1æ˜¯ç”Ÿç‰›ä¹³(mL),2æ˜¯èŒ¶ç²‰(g),3æ˜¯å†°(å—),4æ˜¯ç³–(g),5æ˜¯é¸¡å°¾é…’(mL),6æ˜¯æ¤°æœ(g),7æ˜¯å°æ–™(g)
-const int min[8] = { 10000,10,10,10,10,10,10,10 };//0æ˜¯æ°´(mL),1æ˜¯ç”Ÿç‰›ä¹³(mL),2æ˜¯èŒ¶ç²‰(g),3æ˜¯å†°(å—),4æ˜¯ç³–(g),5æ˜¯é¸¡å°¾é…’(mL),6æ˜¯æ¤°æœ(g),7æ˜¯å°æ–™(g)
-struct User    //ç”¨æˆ·è¡¨ 
+//½á¹¹Ìå
+unsigned int store[8];//0ÊÇË®(mL),1ÊÇÉúÅ£Èé(mL),2ÊÇ²è·Û(g),3ÊÇ±ù(¿é),4ÊÇÌÇ(g),5ÊÇ¼¦Î²¾Æ(mL),6ÊÇÒ¬¹û(g),7ÊÇĞ¡ÁÏ(g)
+const int min[8] = { 10000,10,10,10,10,10,10,10 };//0ÊÇË®(mL),1ÊÇÉúÅ£Èé(mL),2ÊÇ²è·Û(g),3ÊÇ±ù(¿é),4ÊÇÌÇ(g),5ÊÇ¼¦Î²¾Æ(mL),6ÊÇÒ¬¹û(g),7ÊÇĞ¡ÁÏ(g)
+struct User    //ÓÃ»§±í 
 {
-	char userName[10];//ç”¨æˆ·å 
-	char passWord[18];//å¯†ç  
-	int isVIP;//ä¼šå‘˜æ ‡è®° 
-	int isAdministrator;//ç®¡ç†å‘˜æ ‡è®° 
-	float money;//ä½™é¢ 
-	struct User* next;//æŒ‡é’ˆåŸŸ 
+	char userName[10];//ÓÃ»§Ãû 
+	char passWord[18];//ÃÜÂë 
+	int isVIP;//»áÔ±±ê¼Ç 
+	int isAdministrator;//¹ÜÀíÔ±±ê¼Ç 
+	float money;//Óà¶î 
+	struct User* next;//Ö¸ÕëÓò 
 };
 typedef struct User user;
 typedef user* pUser;
 ///////////////////////////////////////////
-struct Drink  //é¥®å“ 
+struct Drink  //ÒûÆ· 
 {
 	char name[20];
 	float price;
-	int origin[8];//0æ˜¯æ°´(mL),1æ˜¯ç”Ÿç‰›ä¹³(mL),2æ˜¯èŒ¶ç²‰(g),3æ˜¯å†°(å—),4æ˜¯ç³–(g),5æ˜¯é¸¡å°¾é…’(mL),6æ˜¯æ¤°æœ(g),7æ˜¯å°æ–™(g)
+	int origin[8];//0ÊÇË®(mL),1ÊÇÉúÅ£Èé(mL),2ÊÇ²è·Û(g),3ÊÇ±ù(¿é),4ÊÇÌÇ(g),5ÊÇ¼¦Î²¾Æ(mL),6ÊÇÒ¬¹û(g),7ÊÇĞ¡ÁÏ(g)
 	struct Drink* next;
 };
 typedef struct Drink DRI;
 typedef DRI* pDRI;
 
-struct Table   //é¤æ¡Œ (æœ‰ç‚¹é—®é¢˜)
+struct Table   //²Í×À (ÓĞµãÎÊÌâ)
 {
-	int ID;//é¤æ¡Œç¼–å·
-	int People;//å·²åäººæ•°
-	int count;//å¯å®¹çº³äººæ•°
-	char Username[10];//è®¢é¤äºº 
+	int ID;//²Í×À±àºÅ
+	int People;//ÒÑ×øÈËÊı
+	int count;//¿ÉÈİÄÉÈËÊı
+	char Username[10];//¶©²ÍÈË 
 	struct Table* next;
 };
 typedef struct Table table;
 typedef table* pTable;
 
 
-struct Form    //è®¢å• 
+struct Form    //¶©µ¥ 
 {
 	char name[20];
 	float price;
@@ -65,137 +65,137 @@ typedef struct Form orderForm;
 typedef orderForm* pOrder;
 
 
-//å‡½æ•°
+//º¯Êı
 
-	//ç”¨æˆ·å®¢æˆ·ç«¯ 
-void Welcome();//æ¬¢è¿ç•Œé¢ 
-void User_Login();//ç”¨æˆ·ç™»å½•ç•Œé¢
-void Logon();//æ³¨å†Œç•Œé¢ 
-pUser readUserFile();//ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€ 
-void save_User(pUser p1);//å°†ç”¨æˆ·ä¿¡æ¯ä¿å­˜åˆ°æ–‡ä»¶ä¸­ 
-void User_Menu();//ç”¨æˆ·èœå•  
-void User_Order();//ç‚¹é¤ 
-void Order_DrinkBeverage();//é¥®å“
-void Order_Form(int ID, int number);//è®¢å• 
-void User_List_Table();//é¤æ¡Œåˆ—è¡¨ 
-void Apply_VIP_Menu();//ä¼šå‘˜åŠç†èœå• 
-void Add_money(pUser head);//å……å€¼ 
-void Updata_User(pUser head);//æ›´æ–°ç”¨æˆ·è¡¨ 
-void Apply_VIP(pUser head);//åŠç†ä¼šå‘˜ 
-void User_Wallet();//æˆ‘çš„é’±åŒ… 
+	//ÓÃ»§¿Í»§¶Ë 
+void Welcome();//»¶Ó­½çÃæ 
+void User_Login();//ÓÃ»§µÇÂ¼½çÃæ
+void Logon();//×¢²á½çÃæ 
+pUser readUserFile();//´ÓÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ· 
+void save_User(pUser p1);//½«ÓÃ»§ĞÅÏ¢±£´æµ½ÎÄ¼şÖĞ 
+void User_Menu();//ÓÃ»§²Ëµ¥  
+void User_Order();//µã²Í 
+void Order_DrinkBeverage();//ÒûÆ·
+void Order_Form(int ID, int number);//¶©µ¥ 
+void User_List_Table();//²Í×ÀÁĞ±í 
+void Apply_VIP_Menu();//»áÔ±°ìÀí²Ëµ¥ 
+void Add_money(pUser head);//³äÖµ 
+void Updata_User(pUser head);//¸üĞÂÓÃ»§±í 
+void Apply_VIP(pUser head);//°ìÀí»áÔ± 
+void User_Wallet();//ÎÒµÄÇ®°ü 
 
 
-	//ç®¡ç†å‘˜å®¢æˆ·ç«¯ 
-void Administrator_Menu();//ç®¡ç†å‘˜èœå• 
-void Administrator_Login();//ç®¡ç†å‘˜ç™»å½• 
-void Check_User();//æŸ¥çœ‹ç”¨æˆ· 
-void Find_User();//æŸ¥æ‰¾ç”¨æˆ·
-void All_User();//æŸ¥çœ‹æ‰€æœ‰ç”¨æˆ· 
-void All_VIP();//æœ¬åº—ä¼šå‘˜ 
-void Food();//èœå“ä¿¡æ¯ 
-void Add_Food();//æ·»åŠ èœå• 
-void save_drinkBeverage(pDRI p);//ä¿å­˜é¥®å“ä¿¡æ¯
-pDRI readDrinkBeverageFile();//ä»é¥®å“æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€
-void Table();//é¤æ¡Œç®¡ç† 
-void Add_Table();//æ·»åŠ é¤æ¡Œ 
-void save_Table(pTable p);//ä¿å­˜é¤æ¡Œä¿¡æ¯
-pTable readTableFile(); //ä»é¤æ¡Œæ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€
-void Clear_Table();//æ¸…ç†é¤æ¡Œ 
-void Clear_oneTable();//æ¸…ç†æŒ‡å®šé¤æ¡Œ
-void Clear_allTable();//æ¸…ç†æ‰€æœ‰é¤æ¡Œ 
-void Updata_Table(pTable head);//æ›´æ–°é¤æ¡Œæ–‡ä»¶ 
-void Administrator_List_Table();//é¤æ¡Œåˆ—è¡¨ 
+	//¹ÜÀíÔ±¿Í»§¶Ë 
+void Administrator_Menu();//¹ÜÀíÔ±²Ëµ¥ 
+void Administrator_Login();//¹ÜÀíÔ±µÇÂ¼ 
+void Check_User();//²é¿´ÓÃ»§ 
+void Find_User();//²éÕÒÓÃ»§
+void All_User();//²é¿´ËùÓĞÓÃ»§ 
+void All_VIP();//±¾µê»áÔ± 
+void Food();//²ËÆ·ĞÅÏ¢ 
+void Add_Food();//Ìí¼Ó²Ëµ¥ 
+void save_drinkBeverage(pDRI p);//±£´æÒûÆ·ĞÅÏ¢
+pDRI readDrinkBeverageFile();//´ÓÒûÆ·ÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ·
+void Table();//²Í×À¹ÜÀí 
+void Add_Table();//Ìí¼Ó²Í×À 
+void save_Table(pTable p);//±£´æ²Í×ÀĞÅÏ¢
+pTable readTableFile(); //´Ó²Í×ÀÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ·
+void Clear_Table();//ÇåÀí²Í×À 
+void Clear_oneTable();//ÇåÀíÖ¸¶¨²Í×À
+void Clear_allTable();//ÇåÀíËùÓĞ²Í×À 
+void Updata_Table(pTable head);//¸üĞÂ²Í×ÀÎÄ¼ş 
+void Administrator_List_Table();//²Í×ÀÁĞ±í 
 
-void History_Main();//å†å²æ“ä½œ
-void Change_Store(int index, int operation, int quantity);//åº“å­˜ç®¡ç†(æ•°ç»„ä¸‹æ ‡,å¢å‡,å¢å‡æ•°)
+void History_Main();//ÀúÊ·²Ù×÷
+void Change_Store(int index, int operation, int quantity);//¿â´æ¹ÜÀí(Êı×éÏÂ±ê,Ôö¼õ,Ôö¼õÊı)
 
-	//å…¬å…±å‡½æ•°
-void toxy(int x, int y);//å°†å…‰æ ‡ç§»åŠ¨åˆ°xï¼Œyåæ ‡å¤„
-void HideCursor(int x);//éšè—å…‰æ ‡ 
-char* HidePassword();//éšè—å¯†ç  
-void Exit();//é€€å‡ºç³»ç»Ÿ  
-void Change();//åˆ‡æ¢è´¦å· 
-void Amend_passWord();//ä¿®æ”¹å¯†ç  
-void List_Food();//èœå•åˆ—è¡¨ 
+	//¹«¹²º¯Êı
+void toxy(int x, int y);//½«¹â±êÒÆ¶¯µ½x£¬y×ø±ê´¦
+void HideCursor(int x);//Òş²Ø¹â±ê 
+char* HidePassword();//Òş²ØÃÜÂë 
+void Exit();//ÍË³öÏµÍ³  
+void Change();//ÇĞ»»ÕËºÅ 
+void Amend_passWord();//ĞŞ¸ÄÃÜÂë 
+void List_Food();//²Ëµ¥ÁĞ±í 
 
-//å…¨å±€å˜é‡åŒº
+//È«¾Ö±äÁ¿Çø
 char _userName[10];
-char _passWord[18];//è®°å½•å½“å‰ç”¨æˆ· 
-pOrder orderHead = NULL, p2 = NULL;//è®°å½•å½“å‰ç”¨æˆ·çš„è®¢å• 
+char _passWord[18];//¼ÇÂ¼µ±Ç°ÓÃ»§ 
+pOrder orderHead = NULL, p2 = NULL;//¼ÇÂ¼µ±Ç°ÓÃ»§µÄ¶©µ¥ 
 int num = 0;
 
-//å‡½æ•°å®ç°åŒº
+//º¯ÊıÊµÏÖÇø
 
-void toxy(int x, int y)//å°†å…‰æ ‡ç§»åŠ¨åˆ°xï¼Œyåæ ‡å¤„
+void toxy(int x, int y)//½«¹â±êÒÆ¶¯µ½x£¬y×ø±ê´¦
 {
 	COORD pos = { (short)x,(short)y };
 	HANDLE Out = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleCursorPosition(Out, pos);
 }
 
-void HideCursor(int x)//éšè—å…‰æ ‡ ,å½“xä¸º0æ—¶ï¼Œéšè—ï¼Œä¸º1æ—¶ï¼Œæ˜¾ç¤º 
+void HideCursor(int x)//Òş²Ø¹â±ê ,µ±xÎª0Ê±£¬Òş²Ø£¬Îª1Ê±£¬ÏÔÊ¾ 
 {
 	CONSOLE_CURSOR_INFO cursor_info = { 1,x };
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor_info);
 }
 
-void Welcome()//æ¬¢è¿ç•Œé¢ 
+void Welcome()//»¶Ó­½çÃæ 
 {
-	char t;//ç”¨äºé€‰æ‹© 
+	char t;//ÓÃÓÚÑ¡Ôñ 
 	do
 	{
-		HideCursor(0); //éšè—å…‰æ ‡ 
+		HideCursor(0); //Òş²Ø¹â±ê 
 		system("color 74");
 		toxy(28, 8);
-		printf("     æ¬¢è¿æ¥åˆ°ä½›è¥¿æ°´å§ï¼    ");
+		printf("     »¶Ó­À´µ½·ğÎ÷Ë®°É£¡    ");
 		toxy(26, 9);
 		printf("-----------------------------");
 		toxy(27, 11);
-		printf("1.ç™»å½•  2.æ³¨å†Œ  3.ç®¡ç†å‘˜ç™»å½•");
-		while (1)    //æ­»å¾ªç¯ä¸ºé˜²æ­¢å…¶ä»–æŒ‰é”®å¹²æ‰° 
+		printf("1.µÇÂ¼  2.×¢²á  3.¹ÜÀíÔ±µÇÂ¼");
+		while (1)    //ËÀÑ­»·Îª·ÀÖ¹ÆäËû°´¼ü¸ÉÈÅ 
 		{
-			t = getch();//ä¸å›æ˜¾å‡½æ•° 
-			if (t == '1')//å¦‚æœæŒ‰1ï¼Œåˆ™è¿›å…¥ç™»å½•ç•Œé¢ 
+			t = getch();//²»»ØÏÔº¯Êı 
+			if (t == '1')//Èç¹û°´1£¬Ôò½øÈëµÇÂ¼½çÃæ 
 				User_Login();
-			else if (t == '2')//å¦‚æœæŒ‰2ï¼Œåˆ™è¿›å…¥æ³¨å†Œç•Œé¢ 
+			else if (t == '2')//Èç¹û°´2£¬Ôò½øÈë×¢²á½çÃæ 
 				Logon();
 			else if (t == '3')
 				Administrator_Login();
-		}//å¦‚æœæ—¢ä¸æ˜¯1ä¹Ÿä¸æ˜¯2å’Œ3ï¼Œåˆ™å¾ªç¯è¾“å…¥ 
-	} while (1);//æ°¸è¿œä¸ºçœŸ 
+		}//Èç¹û¼È²»ÊÇ1Ò²²»ÊÇ2ºÍ3£¬ÔòÑ­»·ÊäÈë 
+	} while (1);//ÓÀÔ¶ÎªÕæ 
 
 }
 
-void User_Menu()//ç”¨æˆ·èœå• 
+void User_Menu()//ÓÃ»§²Ëµ¥ 
 {
 
-	char t;//ç”¨äºé€‰æ‹©èœå•é€‰é¡¹ 
+	char t;//ÓÃÓÚÑ¡Ôñ²Ëµ¥Ñ¡Ïî 
 	do
 	{
 		system("cls");
-		HideCursor(0); //éšè—å…‰æ ‡ 
+		HideCursor(0); //Òş²Ø¹â±ê 
 		system("color 74");
 		toxy(32, 3);
-		printf("---ç”¨æˆ·é¥®å“é€‰æ‹©ç³»ç»Ÿ---");
+		printf("---ÓÃ»§ÒûÆ·Ñ¡ÔñÏµÍ³---");
 		toxy(32, 4);
-		printf("å½“å‰ç”¨æˆ·ï¼š%s", _userName);
+		printf("µ±Ç°ÓÃ»§£º%s", _userName);
 		toxy(30, 5);
 		printf("*********************");
 		toxy(32, 7);
-		printf("|  1.é¥®å“åˆ—è¡¨  |");
+		printf("|  1.ÒûÆ·ÁĞ±í  |");
 		toxy(32, 9);
-		printf("|  2.é¤æ¡Œåˆ—è¡¨  |");
+		printf("|  2.²Í×ÀÁĞ±í  |");
 		toxy(32, 11);
-		printf("|  3.ä¼šå‘˜åŠç†  |");
+		printf("|  3.»áÔ±°ìÀí  |");
 		toxy(32, 13);
-		printf("|  4.ä¿®æ”¹å¯†ç   |");
+		printf("|  4.ĞŞ¸ÄÃÜÂë  |");
 		toxy(32, 15);
-		printf("|  5.æˆ‘çš„é’±åŒ…  |");
+		printf("|  5.ÎÒµÄÇ®°ü  |");
 		toxy(32, 17);
-		printf("|  6.åˆ‡æ¢è´¦å·  |");
+		printf("|  6.ÇĞ»»ÕËºÅ  |");
 		toxy(32, 19);
-		printf("|  7.é€€å‡ºç³»ç»Ÿ  |");
-		t = getch();//ä¸å›æ˜¾å‡½æ•°ï¼Œè¾“å…¥ä¸€ä¸ªå€¼ 
+		printf("|  7.ÍË³öÏµÍ³  |");
+		t = getch();//²»»ØÏÔº¯Êı£¬ÊäÈëÒ»¸öÖµ 
 		switch (t)
 		{
 		case '1':User_Order(); break;
@@ -207,25 +207,25 @@ void User_Menu()//ç”¨æˆ·èœå•
 		case '7':Exit(); break;
 		default:break;
 		}
-	} while (1);//æ°¸è¿œ ä¸ºçœŸ 
+	} while (1);//ÓÀÔ¶ ÎªÕæ 
 }
 
-char* HidePassword()//éšè—å¯†ç  
+char* HidePassword()//Òş²ØÃÜÂë 
 {
-	char password[18];//å¯†ç  
-	char* p;//æŒ‡å‘å¯†ç çš„æŒ‡é’ˆ 
-	int i = 0;//è®°å½•å¯†ç ä½æ•° 
-	char t;//è¾“å…¥å¯†ç  
-	for (;;)              //æ­¤å¤„ä¸ºè¾“å…¥å¯†ç ä¸å›æ˜¾æ“ä½œ 
+	char password[18];//ÃÜÂë 
+	char* p;//Ö¸ÏòÃÜÂëµÄÖ¸Õë 
+	int i = 0;//¼ÇÂ¼ÃÜÂëÎ»Êı 
+	char t;//ÊäÈëÃÜÂë 
+	for (;;)              //´Ë´¦ÎªÊäÈëÃÜÂë²»»ØÏÔ²Ù×÷ 
 	{
-		t = getch();       //è¾“å…¥k 
-		if (t == '\r')      //å¦‚æœè¾“å…¥kä¸ºå›è½¦ï¼Œåˆ™è·³å‡ºå¾ªç¯ 
+		t = getch();       //ÊäÈëk 
+		if (t == '\r')      //Èç¹ûÊäÈëkÎª»Ø³µ£¬ÔòÌø³öÑ­»· 
 		{
 			break;
 		}
-		else if (t == '\b')  //å¦‚æœè¾“å…¥kä¸ºåˆ é™¤é”® 
+		else if (t == '\b')  //Èç¹ûÊäÈëkÎªÉ¾³ı¼ü 
 		{
-			if (i > 0)       //å¦‚è‹¥å¯†ç è¿˜æ²¡å®Œå…¨åˆ é™¤ 
+			if (i > 0)       //ÈçÈôÃÜÂë»¹Ã»ÍêÈ«É¾³ı 
 			{
 				printf("\b");
 				printf(" ");
@@ -233,42 +233,42 @@ char* HidePassword()//éšè—å¯†ç 
 				i--;
 			}
 		}
-		else              //å¦‚æœè¾“å…¥çš„kæ—¢ä¸æ˜¯åˆ é™¤é”®ï¼Œä¹Ÿä¸æ˜¯å›è½¦é”® 
+		else              //Èç¹ûÊäÈëµÄk¼È²»ÊÇÉ¾³ı¼ü£¬Ò²²»ÊÇ»Ø³µ¼ü 
 		{
-			password[i] = t;   //æŠŠkçš„å€¼èµ‹ç»™_password[i]; 
-			printf("*");      //è¾“å‡º*å·ï¼Œä¿æŠ¤ç”¨æˆ·éšç§ 
-			i++;              //å¯†ç ä½æ•°åŠ 1 
+			password[i] = t;   //°ÑkµÄÖµ¸³¸ø_password[i]; 
+			printf("*");      //Êä³ö*ºÅ£¬±£»¤ÓÃ»§ÒşË½ 
+			i++;              //ÃÜÂëÎ»Êı¼Ó1 
 		}
 	}
-	password[i] = '\0';//åœ¨æ•°ç»„æœ«ç«¯åŠ ä¸€ä¸ªç»“æŸç¬¦ 
-	p = password;//è®©pæŒ‡å‘è¯¥æ•°ç»„ 
-	return p; //è¿”å›ä¸€ä¸ªæŒ‡å‘å¯†ç çš„æŒ‡é’ˆ 
+	password[i] = '\0';//ÔÚÊı×éÄ©¶Ë¼ÓÒ»¸ö½áÊø·û 
+	p = password;//ÈÃpÖ¸Ïò¸ÃÊı×é 
+	return p; //·µ»ØÒ»¸öÖ¸ÏòÃÜÂëµÄÖ¸Õë 
 }
 
-pUser readUserFile()//ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€ 
+pUser readUserFile()//´ÓÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ· 
 {
-	FILE* fp;       //æ–‡ä»¶æŒ‡é’ˆ 
-	int n = 0;//è®°å½•é“¾è¡¨ çš„ç»“ç‚¹æ•° 
-	pUser head = NULL;//å®šä¹‰å¤´æŒ‡é’ˆ 
+	FILE* fp;       //ÎÄ¼şÖ¸Õë 
+	int n = 0;//¼ÇÂ¼Á´±í µÄ½áµãÊı 
+	pUser head = NULL;//¶¨ÒåÍ·Ö¸Õë 
 	pUser p2 = NULL, p = NULL, pre = NULL;
-	fp = fopen("User.txt", "a+");     //ä»¥åªè¯»çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶ 
+	fp = fopen("User.txt", "a+");     //ÒÔÖ»¶ÁµÄ·½Ê½´ò¿ªÎÄ¼ş 
 	if (fp == NULL)
 	{
 		printf("cannot open file\n");
 	}
 	else
 	{
-		while (!feof(fp))        //åˆ¤æ–­æ–‡ä»¶ä½ç½®æ ‡å¿—æ˜¯å¦ç§»åŠ¨åˆ°æ–‡ä»¶æœ«å°¾ 
+		while (!feof(fp))        //ÅĞ¶ÏÎÄ¼şÎ»ÖÃ±êÖ¾ÊÇ·ñÒÆ¶¯µ½ÎÄ¼şÄ©Î² 
 		{
 			n++;
-			p = (pUser)malloc(M); //å‘å†…å­˜ç”³è¯·ä¸€æ®µç©ºé—´ 
-			fread(p, M, 1, fp);     //å°†fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ä¸­çš„å†…å®¹èµ‹ç»™p
+			p = (pUser)malloc(M); //ÏòÄÚ´æÉêÇëÒ»¶Î¿Õ¼ä 
+			fread(p, M, 1, fp);     //½«fpËùÖ¸ÏòµÄÎÄ¼şÖĞµÄÄÚÈİ¸³¸øp
 			if (n == 1)
 			{
 				head = p;
 				p2 = p;
 			}
-			else             //åˆ›å»ºé“¾è¡¨ 
+			else             //´´½¨Á´±í 
 			{
 				pre = p2;
 				p2->next = p;
@@ -281,67 +281,67 @@ pUser readUserFile()//ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€
 		head->next = NULL;
 	else
 		pre->next = NULL;
-	fclose(fp);    //å…³é—­æ–‡ä»¶ 
-	return head;   //è¿”å›å¤´æŒ‡é’ˆ 
+	fclose(fp);    //¹Ø±ÕÎÄ¼ş 
+	return head;   //·µ»ØÍ·Ö¸Õë 
 }
 
-void save_User(pUser p1)     //å°†p1æ‰€æŒ‡å‘çš„å†…å®¹å­˜å‚¨åˆ°æ–‡ä»¶ä¸­ 
+void save_User(pUser p1)     //½«p1ËùÖ¸ÏòµÄÄÚÈİ´æ´¢µ½ÎÄ¼şÖĞ 
 {
-	FILE* fp;       //æ–‡ä»¶æŒ‡é’ˆ 
-	fp = fopen("User.txt", "a+");    //ä»¥è¿½åŠ çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶ 
+	FILE* fp;       //ÎÄ¼şÖ¸Õë 
+	fp = fopen("User.txt", "a+");    //ÒÔ×·¼ÓµÄ·½Ê½´ò¿ªÎÄ¼ş 
 	if (fp == NULL)
 	{
 		printf("cannot open file\n");
 	}
-	if (fwrite(p1, M, 1, fp) != 1)    //å°†p1æ‰€æŒ‡å‘çš„1ä¸ªå¤§å°ä¸ºNçš„æ•°æ®ç»“æ„å†™å…¥fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ä¸­ 
+	if (fwrite(p1, M, 1, fp) != 1)    //½«p1ËùÖ¸ÏòµÄ1¸ö´óĞ¡ÎªNµÄÊı¾İ½á¹¹Ğ´ÈëfpËùÖ¸ÏòµÄÎÄ¼şÖĞ 
 	{
 		printf("file write error\n");
 	}
-	fclose(fp);        //å…³é—­æ–‡ä»¶ 
+	fclose(fp);        //¹Ø±ÕÎÄ¼ş 
 }
 
-void User_Login()//ç™»å½•é¡µé¢ 
+void User_Login()//µÇÂ¼Ò³Ãæ 
 {
-	char* q, t, c;//qæŒ‡é’ˆç”¨äºæ¥æ”¶ *HidePassword()å‡½æ•°è¿”å›çš„æŒ‡å‘å¯†ç çš„æŒ‡é’ˆï¼Œtå’Œcå‡ç”¨äºé€‰æ‹© 
-	pUser p = readUserFile();//ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€ 
+	char* q, t, c;//qÖ¸ÕëÓÃÓÚ½ÓÊÕ *HidePassword()º¯Êı·µ»ØµÄÖ¸ÏòÃÜÂëµÄÖ¸Õë£¬tºÍc¾ùÓÃÓÚÑ¡Ôñ 
+	pUser p = readUserFile();//´ÓÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ· 
 	do
 	{
-		HideCursor(1);//æ˜¾ç¤ºç®¡å…‰æ ‡ 
-		system("cls");//æ¸…å± 
-		system("color 73");//è®¾ç½®é¢œè‰² 
+		HideCursor(1);//ÏÔÊ¾¹Ü¹â±ê 
+		system("cls");//ÇåÆÁ 
+		system("color 73");//ÉèÖÃÑÕÉ« 
 		toxy(28, 8);
-		printf("ä½›è¥¿æ°´å§ç³»ç»Ÿç™»å½•ç•Œé¢");
+		printf("·ğÎ÷Ë®°ÉÏµÍ³µÇÂ¼½çÃæ");
 		toxy(26, 9);
 		printf("-----------------------------");
 		toxy(32, 11);
-		printf("ç”¨æˆ·å:");
+		printf("ÓÃ»§Ãû:");
 		toxy(32, 13);
-		printf("å¯†  ç :");
+		printf("ÃÜ  Âë:");
 		toxy(40, 11);
 		scanf("%s", _userName);
 		toxy(40, 13);
-		q = HidePassword();//è¾“å…¥å¯†ç  
-		strcpy(_passWord, q);//å°†è·å¾—çš„å¯†ç å¤åˆ¶ç»™_passWord[]æ•°ç»„ 
-		while (p != NULL && strcmp(p->userName, _userName) != 0)   //éå†é“¾è¡¨ï¼Œå¯»æ‰¾å½“å‰è¾“å…¥çš„è´¦æˆ·çš„è´¦å· 
+		q = HidePassword();//ÊäÈëÃÜÂë 
+		strcpy(_passWord, q);//½«»ñµÃµÄÃÜÂë¸´ÖÆ¸ø_passWord[]Êı×é 
+		while (p != NULL && strcmp(p->userName, _userName) != 0)   //±éÀúÁ´±í£¬Ñ°ÕÒµ±Ç°ÊäÈëµÄÕË»§µÄÕËºÅ 
 		{
 			p = p->next;
 		}
-		if (p != NULL)   //å¦‚æœpä¸ä¸ºç©º 
+		if (p != NULL)   //Èç¹ûp²»Îª¿Õ 
 		{
-			if (strcmp(p->passWord, _passWord) == 0)     //å¦‚æœè¾“å…¥çš„å¯†ç æ­£ç¡® 
+			if (strcmp(p->passWord, _passWord) == 0)     //Èç¹ûÊäÈëµÄÃÜÂëÕıÈ· 
 			{
 				toxy(32, 16);
-				printf("æ­£åœ¨ç™»é™†....");
-				Sleep(500);      //æš‚åœ0.5ç§’
+				printf("ÕıÔÚµÇÂ½....");
+				Sleep(500);      //ÔİÍ£0.5Ãë
 				system("cls");
 				toxy(32, 10);
-				printf("ç™»é™†æˆåŠŸï¼");
-				break;    //è·³å‡ºå¾ªç¯
+				printf("µÇÂ½³É¹¦£¡");
+				break;    //Ìø³öÑ­»·
 			}
-			else      //å¦‚æœè¾“å…¥çš„å¯†ç é”™è¯¯
+			else      //Èç¹ûÊäÈëµÄÃÜÂë´íÎó
 			{
 				toxy(32, 16);
-				printf("æ­£åœ¨ç™»é™†....");
+				printf("ÕıÔÚµÇÂ½....");
 				Sleep(500);
 				system("cls");
 				toxy(30, 8);
@@ -349,33 +349,33 @@ void User_Login()//ç™»å½•é¡µé¢
 				toxy(30, 9);
 				printf("|                       |");
 				toxy(30, 10);
-				printf("| å¯†ç é”™è¯¯ï¼æ˜¯å¦ç»§ç»­ï¼Ÿ  |");
+				printf("| ÃÜÂë´íÎó£¡ÊÇ·ñ¼ÌĞø£¿  |");
 				toxy(30, 12);
-				printf("| 1.æ˜¯             2.å¦ |");
+				printf("| 1.ÊÇ             2.·ñ |");
 				toxy(30, 13);
 				printf("|                       |");
 				toxy(30, 14);
 				printf("-------------------------");
-				while (1)//æ— é™å¾ªç¯ä¸ºé˜²æ­¢å…¶ä»–æŒ‰é”®å¹²æ‰° 
+				while (1)//ÎŞÏŞÑ­»·Îª·ÀÖ¹ÆäËû°´¼ü¸ÉÈÅ 
 				{
-					t = getch();  //è¾“å…¥t    
+					t = getch();  //ÊäÈët    
 					if (t == '1')
 					{
-						system("cls");  //æ¸…å± 
+						system("cls");  //ÇåÆÁ 
 						break;
 					}
-					else if (t == '2')     //å¦‚æœè¾“å…¥tä¸ºnï¼Œè¿›å…¥å¼€å§‹ç•Œé¢ 
+					else if (t == '2')     //Èç¹ûÊäÈëtÎªn£¬½øÈë¿ªÊ¼½çÃæ 
 					{
-						system("cls");  //æ¸…å±
+						system("cls");  //ÇåÆÁ
 						Welcome(); break;
 					}
 				}
 			}
 		}
-		else              //å¦‚æœpä¸ºç©ºï¼Œå³è¾“å…¥çš„è´¦å·ä¸æ­£ç¡® 
+		else              //Èç¹ûpÎª¿Õ£¬¼´ÊäÈëµÄÕËºÅ²»ÕıÈ· 
 		{
 			toxy(32, 16);
-			printf("æ­£åœ¨ç™»é™†....");
+			printf("ÕıÔÚµÇÂ½....");
 			Sleep(500);
 			system("cls");
 			toxy(30, 8);
@@ -383,16 +383,16 @@ void User_Login()//ç™»å½•é¡µé¢
 			toxy(30, 9);
 			printf("|                       |");
 			toxy(30, 10);
-			printf("|  è´¦å·é”™è¯¯ï¼æ˜¯å¦ç»§ç»­ï¼Ÿ |");
+			printf("|  ÕËºÅ´íÎó£¡ÊÇ·ñ¼ÌĞø£¿ |");
 			toxy(30, 11);
 			printf("|                       |");
 			toxy(30, 12);
-			printf("|  1.æ˜¯            2.å¦ |");
+			printf("|  1.ÊÇ            2.·ñ |");
 			toxy(30, 13);
 			printf("|                       |");
 			toxy(30, 14);
 			printf("-------------------------");
-			while (1)      //æ­»å¾ªç¯é˜²æ­¢å…¶ä»–æŒ‰é”®å¹²æ‰° 
+			while (1)      //ËÀÑ­»··ÀÖ¹ÆäËû°´¼ü¸ÉÈÅ 
 			{
 				c = getch();
 				if (c == '1')
@@ -402,64 +402,64 @@ void User_Login()//ç™»å½•é¡µé¢
 				}
 				else if (c == '2')
 				{
-					system("cls");  //æ¸…å±
+					system("cls");  //ÇåÆÁ
 					Welcome();
 				}
 			}
 		}
 	} while (1);
-	Sleep(500);      //æš‚åœ0.5ç§’ 
-	User_Menu();         //è´¦å·å¯†ç å‡æ­£ç¡®ï¼Œè¿›å…¥ç”¨æˆ·ä¸»èœå• 
+	Sleep(500);      //ÔİÍ£0.5Ãë 
+	User_Menu();         //ÕËºÅÃÜÂë¾ùÕıÈ·£¬½øÈëÓÃ»§Ö÷²Ëµ¥ 
 }
 
-void Logon()//æ³¨å†Œç•Œé¢
+void Logon()//×¢²á½çÃæ
 {
 	pUser p1;
-	pUser p = readUserFile();//ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€ 
-	p1 = (pUser)malloc(M);     //å‘å†…å­˜ç”³è¯·ä¸€æ®µç©ºé—´ 
-	char* q1, * q2;//q1ï¼Œq2åˆ†åˆ«ç”¨äºæ¥æ”¶ *HidePassword()å‡½æ•°è¿”å›çš„å€¼ 
-	char userName[10], passWord[18], againPassword[18], c, t;//cï¼Œtå‡ç”¨äºé€‰æ‹© 
+	pUser p = readUserFile();//´ÓÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ· 
+	p1 = (pUser)malloc(M);     //ÏòÄÚ´æÉêÇëÒ»¶Î¿Õ¼ä 
+	char* q1, * q2;//q1£¬q2·Ö±ğÓÃÓÚ½ÓÊÕ *HidePassword()º¯Êı·µ»ØµÄÖµ 
+	char userName[10], passWord[18], againPassword[18], c, t;//c£¬t¾ùÓÃÓÚÑ¡Ôñ 
 	do {
 		system("cls");
 		system("color 73");
-		HideCursor(1);//æ˜¾ç¤ºå…‰æ ‡ 
-		int flag = 0;//æ ‡è®°ä¿¡æ¯åº“ä¸­æ˜¯å¦å­˜åœ¨è¦æ³¨å†Œç”¨æˆ·å 
+		HideCursor(1);//ÏÔÊ¾¹â±ê 
+		int flag = 0;//±ê¼ÇĞÅÏ¢¿âÖĞÊÇ·ñ´æÔÚÒª×¢²áÓÃ»§Ãû 
 		toxy(28, 8);
-		printf("ä½›è¥¿æ°´å§ç®¡ç†ç³»ç»Ÿæ³¨å†Œç•Œé¢");
+		printf("·ğÎ÷Ë®°É¹ÜÀíÏµÍ³×¢²á½çÃæ");
 		toxy(26, 9);
 		printf("-----------------------------");
 		toxy(32, 11);
-		printf("ç”¨ æˆ· å:");
+		printf("ÓÃ »§ Ãû:");
 		toxy(32, 13);
-		printf("å¯†    ç :");
+		printf("ÃÜ    Âë:");
 		toxy(32, 15);
-		printf("ç¡®è®¤å¯†ç :");
+		printf("È·ÈÏÃÜÂë:");
 		toxy(42, 11);
-		scanf("%s", userName);//è¾“å…¥ç”¨æˆ·å 
+		scanf("%s", userName);//ÊäÈëÓÃ»§Ãû 
 		toxy(42, 13);
-		q1 = HidePassword();//è¾“å…¥å¯†ç  
+		q1 = HidePassword();//ÊäÈëÃÜÂë 
 		strcpy(passWord, q1);
 		toxy(42, 15);
-		q2 = HidePassword();//è¾“å…¥ç¡®è®¤å¯†ç  
+		q2 = HidePassword();//ÊäÈëÈ·ÈÏÃÜÂë 
 		strcpy(againPassword, q2);
-		while (p != NULL)   //éå†é“¾è¡¨ï¼Œå¯»æ‰¾å½“å‰è¾“å…¥çš„è´¦æˆ·çš„è´¦å· 
+		while (p != NULL)   //±éÀúÁ´±í£¬Ñ°ÕÒµ±Ç°ÊäÈëµÄÕË»§µÄÕËºÅ 
 		{
-			if (strcmp(p->userName, userName) == 0)//å¦‚æœä¿¡æ¯åº“ä¸­å­˜åœ¨è¯¥ç”¨æˆ·å 
+			if (strcmp(p->userName, userName) == 0)//Èç¹ûĞÅÏ¢¿âÖĞ´æÔÚ¸ÃÓÃ»§Ãû 
 			{
 				toxy(32, 17);
-				printf("ç”¨æˆ·åå·²å­˜åœ¨ï¼Œè¯·é‡æ–°æ³¨å†Œï¼");
-				flag = 1;//flagä¸º1æ—¶è¡¨ç¤ºç”¨æˆ·åå·²å­˜åœ¨ 
-				break;//è·³å‡ºå¾ªç¯ 
+				printf("ÓÃ»§ÃûÒÑ´æÔÚ£¬ÇëÖØĞÂ×¢²á£¡");
+				flag = 1;//flagÎª1Ê±±íÊ¾ÓÃ»§ÃûÒÑ´æÔÚ 
+				break;//Ìø³öÑ­»· 
 			}
 			p = p->next;
 		}
-		if (flag)//å¦‚æœç”¨æˆ·åå·²å­˜åœ¨ 
+		if (flag)//Èç¹ûÓÃ»§ÃûÒÑ´æÔÚ 
 		{
-			HideCursor(0);//éšè—å…‰æ ‡ 
+			HideCursor(0);//Òş²Ø¹â±ê 
 			toxy(32, 19);
-			printf("æ˜¯å¦ç»§ç»­ï¼Ÿ");//è¯¢é—®æ˜¯å¦ç»§ç»­ 
+			printf("ÊÇ·ñ¼ÌĞø£¿");//Ñ¯ÎÊÊÇ·ñ¼ÌĞø 
 			toxy(32, 21);
-			printf("1.æ˜¯\t2.å¦");
+			printf("1.ÊÇ\t2.·ñ");
 			while (1)
 			{
 				t = getch();
@@ -468,36 +468,36 @@ void Logon()//æ³¨å†Œç•Œé¢
 				else if (t == '2')
 					break;
 			}
-			if (t == '1')//å¦‚æœç»§ç»­ï¼Œåˆ™é‡æ–°æ³¨å†Œ 
+			if (t == '1')//Èç¹û¼ÌĞø£¬ÔòÖØĞÂ×¢²á 
 				continue;
-			else if (t == '2')//å¦‚æœä¸ç»§ç»­ï¼Œåˆ™å›åˆ°é¦–é¡µ 
+			else if (t == '2')//Èç¹û²»¼ÌĞø£¬Ôò»Øµ½Ê×Ò³ 
 			{
-				system("cls");//æ¸…å± 
-				Welcome();//å›åˆ°é¦–é¡µ 
+				system("cls");//ÇåÆÁ 
+				Welcome();//»Øµ½Ê×Ò³ 
 			}
 		}
 
-		if (strcmp(passWord, againPassword) == 0)        //å¦‚æœè¾“å…¥çš„ä¸¤æ¬¡å¯†ç å‡æ­£ç¡® 
+		if (strcmp(passWord, againPassword) == 0)        //Èç¹ûÊäÈëµÄÁ½´ÎÃÜÂë¾ùÕıÈ· 
 		{
 			strcpy(p1->userName, userName);
 			strcpy(p1->passWord, passWord);
 			strcpy(_userName, userName);
 			strcpy(_passWord, passWord);
-			p1->isVIP = 0;//åˆå§‹åŒ–:ä¸æ˜¯ä¼šå‘˜
-			p1->money = 0;//åˆå§‹åŒ–é‡‘é¢
+			p1->isVIP = 0;//³õÊ¼»¯:²»ÊÇ»áÔ±
+			p1->money = 0;//³õÊ¼»¯½ğ¶î
 			if (strcmp(userName, "root") == 0 && strcmp(passWord, "root") == 0)
 				p1->isAdministrator = 1;
 			else
 				p1->isAdministrator = 0;
 			toxy(32, 16);
-			printf("æ­£åœ¨æ³¨å†Œ....");
+			printf("ÕıÔÚ×¢²á....");
 			Sleep(500);
-			break;              //è·³å‡ºå¾ªç¯ 
+			break;              //Ìø³öÑ­»· 
 		}
-		else    //å¦‚æœè¾“å…¥çš„ä¸¤æ¬¡å¯†ç ä¸åŒ 
+		else    //Èç¹ûÊäÈëµÄÁ½´ÎÃÜÂë²»Í¬ 
 		{
 			toxy(32, 16);
-			printf("æ­£åœ¨æ³¨å†Œ....");
+			printf("ÕıÔÚ×¢²á....");
 			Sleep(500);
 			system("cls");
 			toxy(30, 8);
@@ -505,11 +505,11 @@ void Logon()//æ³¨å†Œç•Œé¢
 			toxy(30, 9);
 			printf("|                            |");
 			toxy(30, 10);
-			printf("|ä¸¤æ¬¡å¯†ç ä¸ä¸€è‡´!æ˜¯å¦ç»§ç»­æ³¨å†Œ?|");
+			printf("|Á½´ÎÃÜÂë²»Ò»ÖÂ!ÊÇ·ñ¼ÌĞø×¢²á?|");
 			toxy(30, 11);
 			printf("|                            |");
 			toxy(30, 12);
-			printf("|  1.æ˜¯                2.å¦  |");
+			printf("|  1.ÊÇ                2.·ñ  |");
 			toxy(30, 13);
 			printf("|                            |");
 			toxy(30, 14);
@@ -531,18 +531,18 @@ void Logon()//æ³¨å†Œç•Œé¢
 			}
 		}
 	} while (1);
-	save_User(p1);     //è°ƒç”¨å‡½æ•°ï¼Œå°†p1æ‰€æŒ‡å‘çš„å†…å®¹å­˜å‚¨åˆ°æ–‡ä»¶ä¸­ 
+	save_User(p1);     //µ÷ÓÃº¯Êı£¬½«p1ËùÖ¸ÏòµÄÄÚÈİ´æ´¢µ½ÎÄ¼şÖĞ 
 	system("cls");
 	toxy(32, 10);
-	printf("æ³¨å†ŒæˆåŠŸï¼");
-	Sleep(500);         //æš‚åœ0.5ç§’ 
+	printf("×¢²á³É¹¦£¡");
+	Sleep(500);         //ÔİÍ£0.5Ãë 
 	toxy(32, 12);
-	printf("æ­£åœ¨è‡ªåŠ¨ä¸ºæ‚¨ç™»é™†....");
+	printf("ÕıÔÚ×Ô¶¯ÎªÄúµÇÂ½....");
 	Sleep(500);
-	User_Menu();    //æ³¨å†ŒæˆåŠŸåè¿›å…¥ä¸»èœå• 
+	User_Menu();    //×¢²á³É¹¦ºó½øÈëÖ÷²Ëµ¥ 
 }
 
-void User_Order()//ç‚¹é¤
+void User_Order()//µã²Í
 {
 	char ch = '0';
 	char t = '0';
@@ -560,9 +560,9 @@ void User_Order()//ç‚¹é¤
 			T = Thead;
 			int j = 11;
 			toxy(12, 6);
-			printf("é¤æ¡Œåˆ—è¡¨(æŒ‰ä»»æ„é”®ç»§ç»­)");
+			printf("²Í×ÀÁĞ±í(°´ÈÎÒâ¼ü¼ÌĞø)");
 			toxy(2, 8);
-			printf("é¤æ¡Œç¼–å· | å¯åäººæ•° | å·²åäººæ•°");
+			printf("²Í×À±àºÅ | ¿É×øÈËÊı | ÒÑ×øÈËÊı");
 			toxy(0, 9);
 			printf("--------------------------------------");
 			while (T != NULL)
@@ -573,10 +573,10 @@ void User_Order()//ç‚¹é¤
 				T = T->next;
 			}
 			toxy(38, 12);
-			printf("è¯·é€‰æ‹©é¤æ¡Œå·ï¼š");
+			printf("ÇëÑ¡Ôñ²Í×ÀºÅ£º");
 			scanf("%d", &ID);
 			toxy(40, 14);
-			printf("è¯·é€‰æ‹©äººæ•°ï¼š");
+			printf("ÇëÑ¡ÔñÈËÊı£º");
 			scanf("%d", &number);
 			T = Thead;
 			while (T != NULL)
@@ -586,14 +586,14 @@ void User_Order()//ç‚¹é¤
 					if ((T->count) - (T->People) >= number)
 					{
 						toxy(38, 16);
-						printf("å åº§æˆåŠŸï¼æŒ‰ä»»æ„é”®ç»§ç»­ç‚¹é¤");
+						printf("Õ¼×ù³É¹¦£¡°´ÈÎÒâ¼ü¼ÌĞøµã²Í");
 						flag = 1;
 						break;
 					}
 					else
 					{
 						toxy(38, 16);
-						printf("å åº§å¤±è´¥ï¼è¯¥é¤æ¡Œåº§ä½ä¸å¤Ÿ");
+						printf("Õ¼×ùÊ§°Ü£¡¸Ã²Í×À×ùÎ»²»¹»");
 						flag = 0;
 						break;
 					}
@@ -603,14 +603,14 @@ void User_Order()//ç‚¹é¤
 			if (T == NULL && flag == 0)
 			{
 				toxy(38, 16);
-				printf("è¯¥é¤æ¡Œç¼–å·ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥");
+				printf("¸Ã²Í×À±àºÅ²»´æÔÚ£¬ÇëÖØĞÂÊäÈë");
 				Sleep(1000);
 				continue;
 			}
 			else if (T != NULL && flag == 0)
 			{
 				toxy(38, 17);
-				printf("æ˜¯å¦ç»§ç»­  1.æ˜¯   2.å¦");
+				printf("ÊÇ·ñ¼ÌĞø  1.ÊÇ   2.·ñ");
 				while (1)
 				{
 					ch = getch();
@@ -633,15 +633,15 @@ void User_Order()//ç‚¹é¤
 
 			system("cls");
 			toxy(32, 6);
-			printf("ç‚¹é¤");
+			printf("µã²Í");
 			toxy(24, 8);
 			printf("-----------------");
 			toxy(28, 10);
-			printf("1) é¥®  å“");
+			printf("1) Òû  Æ·");
 			toxy(28, 12);
-			printf("2ï¼‰è®¢  å•");
+			printf("2£©¶©  µ¥");
 			toxy(28, 14);
-			printf("3ï¼‰è¿”  å›");
+			printf("3£©·µ  »Ø");
 			t = getch();
 			switch (t)
 			{
@@ -658,7 +658,7 @@ void User_Order()//ç‚¹é¤
 	} while (1);
 }
 
-void Order_DrinkBeverage()//é¥®å“
+void Order_DrinkBeverage()//ÒûÆ·
 {
 	char t;
 	do
@@ -670,9 +670,9 @@ void Order_DrinkBeverage()//é¥®å“
 		char foodName[20];
 		int i = 8;
 		toxy(10, 4);
-		printf("é¥®å“èœå•");
+		printf("ÒûÆ·²Ëµ¥");
 		toxy(6, 6);
-		printf("èœå\t\t\tä»·æ ¼");
+		printf("²ËÃû\t\t\t¼Û¸ñ");
 		toxy(0, 7);
 		printf("-----------------------------------");
 		while (p != NULL)
@@ -683,17 +683,17 @@ void Order_DrinkBeverage()//é¥®å“
 			p = p->next;
 		}
 		toxy(40, 8);
-		printf("è¯·è¾“å…¥æ‚¨è¦ç‚¹çš„é¥®å“å:");
+		printf("ÇëÊäÈëÄúÒªµãµÄÒûÆ·Ãû:");
 		scanf("%s", foodName);
 		p = head;
 		while (p != NULL && strcmp(p->name, foodName) != 0)
 			p = p->next;
-		if (p)//på°±æ˜¯é¥®å“èŠ‚ç‚¹
+		if (p)//p¾ÍÊÇÒûÆ·½Úµã
 		{
 			p1 = (pOrder)malloc(Y);
 			strcpy(p1->name, foodName);
 			p1->price = p->price;
-			num++;//å…¨å±€å˜é‡num,æ„ä¸ºå·²ç‚¹æ•°é‡
+			num++;//È«¾Ö±äÁ¿num,ÒâÎªÒÑµãÊıÁ¿
 			if (num == 1)
 			{
 				orderHead = p1;
@@ -711,7 +711,7 @@ void Order_DrinkBeverage()//é¥®å“
 			}
 			//Change_Store(int index, int operation, int quantity)
 			toxy(36, 10);
-			printf("ç‚¹é¤æˆåŠŸï¼æ˜¯å¦ç»§ç»­ï¼Ÿ1.æ˜¯   2.å¦");
+			printf("µã²Í³É¹¦£¡ÊÇ·ñ¼ÌĞø£¿1.ÊÇ   2.·ñ");
 			while (1)
 			{
 				t = getch();
@@ -726,13 +726,13 @@ void Order_DrinkBeverage()//é¥®å“
 		else
 		{
 			toxy(36, 10);
-			printf("æ²¡æœ‰æ‰¾åˆ°è¿™é“èœï¼Œè¯·æ£€æŸ¥æ‚¨è¾“å…¥çš„èœåæ˜¯å¦æ­£ç¡®ï¼");
+			printf("Ã»ÓĞÕÒµ½´ËÒûÆ·£¬Çë¼ì²éÄúÊäÈëµÄÃû³ÆÊÇ·ñÕıÈ·£¡");
 			Sleep(1500);
 		}
 	} while (1);
 }
 
-void Order_Form(int ID, int number)//è®¢å•
+void Order_Form(int ID, int number)//¶©µ¥
 {
 	do
 	{
@@ -748,16 +748,16 @@ void Order_Form(int ID, int number)//è®¢å•
 		if (orderHead == NULL)
 		{
 			toxy(26, 8);
-			printf("æ‚¨è¿˜æ²¡æœ‰ç‚¹ä»»ä½•ä¸œè¥¿ï¼Œèµ¶ç´§å»ç‚¹å§ï¼(æŒ‰ä»»æ„é”®è¿”å›)");
+			printf("Äú»¹Ã»ÓĞµãÈÎºÎ¶«Î÷£¬¸Ï½ôÈ¥µã°É£¡(°´ÈÎÒâ¼ü·µ»Ø)");
 			getch();
 			break;
 		}
 		else
 		{
 			toxy(26, 6);
-			printf("æˆ‘çš„è®¢å•");
+			printf("ÎÒµÄ¶©µ¥");
 			toxy(22, 8);
-			printf("èœå“åç§°\t\tä»·æ ¼");
+			printf("²ËÆ·Ãû³Æ\t\t¼Û¸ñ");
 			toxy(20, 9);
 			printf("***************************");
 			while (p != NULL)
@@ -779,16 +779,16 @@ void Order_Form(int ID, int number)//è®¢å•
 			if (q)
 			{
 				toxy(24, ++i);
-				printf("æ€»ä»·ï¼š  %.2f", totalPrice);
+				printf("×Ü¼Û£º  %.2f", totalPrice);
 				if (q->isVIP)
 					actualPayment = totalPrice * 0.85;
 				else
 					actualPayment = totalPrice;
 				toxy(24, ++i);
-				printf("å®ä»˜ï¼š  %.2f", actualPayment);
+				printf("Êµ¸¶£º  %.2f", actualPayment);
 			}
 			toxy(22, ++i);
-			printf("1.ç¡®è®¤æ”¯ä»˜   2.å–æ¶ˆè®¢å•   3.è¿”å›");
+			printf("1.È·ÈÏÖ§¸¶   2.È¡Ïû¶©µ¥   3.·µ»Ø");
 			while (1)
 			{
 				t = getch();
@@ -804,7 +804,7 @@ void Order_Form(int ID, int number)//è®¢å•
 					T = T->next;
 				}
 				toxy(24, ++i);
-				printf("æ­£åœ¨æ”¯ä»˜....");
+				printf("ÕıÔÚÖ§¸¶....");
 				if (q->money >= actualPayment)
 				{
 					q->money -= actualPayment;
@@ -814,7 +814,7 @@ void Order_Form(int ID, int number)//è®¢å•
 					Sleep(1500);
 					system("cls");
 					toxy(24, 10);
-					printf("æ”¯ä»˜æˆåŠŸï¼æŒ‰ä»»æ„é”®è¿”å›");
+					printf("Ö§¸¶³É¹¦£¡°´ÈÎÒâ¼ü·µ»Ø");
 					orderHead = NULL;
 					getch();
 					break;
@@ -824,7 +824,7 @@ void Order_Form(int ID, int number)//è®¢å•
 					Sleep(1500);
 					system("cls");
 					toxy(24, 10);
-					printf("ä½™é¢ä¸è¶³ï¼æŒ‰ä»»æ„é”®è¿”å›");
+					printf("Óà¶î²»×ã£¡°´ÈÎÒâ¼ü·µ»Ø");
 					getch();
 					break;
 				}
@@ -840,7 +840,7 @@ void Order_Form(int ID, int number)//è®¢å•
 	} while (1);
 }
 
-void User_List_Table()//é¤æ¡Œåˆ—è¡¨
+void User_List_Table()//²Í×ÀÁĞ±í
 {
 	system("cls");
 	pTable p, head;
@@ -848,9 +848,9 @@ void User_List_Table()//é¤æ¡Œåˆ—è¡¨
 	p = head;
 	int i = 11;
 	toxy(32, 6);
-	printf("é¤æ¡Œåˆ—è¡¨(æŒ‰ä»»æ„é”®ç»§ç»­)");
+	printf("²Í×ÀÁĞ±í(°´ÈÎÒâ¼ü¼ÌĞø)");
 	toxy(22, 8);
-	printf("é¤æ¡Œç¼–å· | å¯åäººæ•° | å·²åäººæ•°");
+	printf("²Í×À±àºÅ | ¿É×øÈËÊı | ÒÑ×øÈËÊı");
 	toxy(20, 9);
 	printf("--------------------------------------");
 	while (p != NULL)
@@ -863,23 +863,23 @@ void User_List_Table()//é¤æ¡Œåˆ—è¡¨
 	getch();
 }
 
-void Apply_VIP_Menu()//åŠç†ä¼šå‘˜
+void Apply_VIP_Menu()//°ìÀí»áÔ±
 {
-	char t; //tç”¨äºé€‰æ‹© 
+	char t; //tÓÃÓÚÑ¡Ôñ 
 	do
 	{
 		system("cls");
 		system("color 75");
 		HideCursor(0);
-		pUser head = readUserFile();//ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€
+		pUser head = readUserFile();//´ÓÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ·
 		toxy(32, 6);
-		printf("ä¼šå‘˜åŠç†");
+		printf("»áÔ±°ìÀí");
 		toxy(30, 8);
-		printf("1)  å……å€¼ ");
+		printf("1)  ³äÖµ ");
 		toxy(30, 10);
-		printf("2)  åŠç†ä¼šå‘˜");
+		printf("2)  °ìÀí»áÔ±");
 		toxy(30, 12);
-		printf("3)  è¿”å›");
+		printf("3)  ·µ»Ø");
 		t = getch();
 		switch (t)
 		{
@@ -888,17 +888,17 @@ void Apply_VIP_Menu()//åŠç†ä¼šå‘˜
 		case '3':break;
 		default:break;
 		}
-		if (t == '3')//å¦‚æœè¾“å…¥3ï¼Œåˆ™è·³å‡ºå¾ªç¯ï¼Œè¯¥å‡½æ•°ç”Ÿå‘½å‘¨æœŸç»“æŸï¼Œå›åˆ°ä¸Šä¸€çº§èœå• 
+		if (t == '3')//Èç¹ûÊäÈë3£¬ÔòÌø³öÑ­»·£¬¸Ãº¯ÊıÉúÃüÖÜÆÚ½áÊø£¬»Øµ½ÉÏÒ»¼¶²Ëµ¥ 
 			break;
 	} while (1);
 }
 
-void Add_money(pUser head)//å……å€¼
+void Add_money(pUser head)//³äÖµ
 {
-	float money;//è¾“å…¥è¦å……å€¼çš„é’± 
+	float money;//ÊäÈëÒª³äÖµµÄÇ® 
 	pUser p;
-	p = head;//headä¸ºä» ä¸Šä¸€çº§èœå•ä¼ è¿‡æ¥çš„å‚æ•°ï¼Œä¸ºç”¨æˆ·ä¿¡æ¯é“¾è¡¨çš„å¤´ç»“ç‚¹ 
-	while (p != NULL && strcmp(p->userName, _userName) != 0)//éå†é“¾è¡¨ï¼Œå¯»æ‰¾å½“å‰ç™»å½•è´¦æˆ·çš„ä¿¡æ¯ 
+	p = head;//headÎª´Ó ÉÏÒ»¼¶²Ëµ¥´«¹ıÀ´µÄ²ÎÊı£¬ÎªÓÃ»§ĞÅÏ¢Á´±íµÄÍ·½áµã 
+	while (p != NULL && strcmp(p->userName, _userName) != 0)//±éÀúÁ´±í£¬Ñ°ÕÒµ±Ç°µÇÂ¼ÕË»§µÄĞÅÏ¢ 
 	{
 		p = p->next;
 	}
@@ -907,39 +907,39 @@ void Add_money(pUser head)//å……å€¼
 		system("cls");
 		system("color 76");
 		toxy(32, 6);
-		printf("å—èˆªé¤é¥®å……å€¼ä¸­å¿ƒ");
+		printf("ÄÏº½²ÍÒû³äÖµÖĞĞÄ");
 		if (p != NULL)
 		{
-			if (p->isVIP == 0)//å¦‚æœä¸æ˜¯ä¼šå‘˜ 
+			if (p->isVIP == 0)//Èç¹û²»ÊÇ»áÔ± 
 			{
 				toxy(20, 8);
-				printf("å¯¹ä¸èµ·ï¼Œæ‚¨è¿˜ä¸æ˜¯ä¼šå‘˜ï¼Œè¯·å…ˆåŠç†ä¼šå‘˜åå†æ¥å……å€¼ï¼");
+				printf("¶Ô²»Æğ£¬Äú»¹²»ÊÇ»áÔ±£¬ÇëÏÈ°ìÀí»áÔ±ºóÔÙÀ´³äÖµ£¡");
 				toxy(32, 10);
-				printf("è¯·æŒ‰ä»»æ„é”®è¿”å›!");
+				printf("Çë°´ÈÎÒâ¼ü·µ»Ø!");
 				break;
 			}
-			else if (p->isVIP == 1)//å¦‚æœæ˜¯ä¼šå‘˜ 
+			else if (p->isVIP == 1)//Èç¹ûÊÇ»áÔ± 
 			{
 				HideCursor(1);
 				toxy(32, 8);
-				printf("è¯·è¾“å…¥å……å€¼é‡‘é¢ï¼ˆä¸€æ¬¡ä¸å°‘äº200ï¼‰ï¼š");
+				printf("ÇëÊäÈë³äÖµ½ğ¶î£¨Ò»´Î²»ÉÙÓÚ200£©£º");
 				scanf("%f", &money);
-				if (money >= 200)//å¦‚æœå……å€¼é‡‘é¢å¤§äº200 
+				if (money >= 200)//Èç¹û³äÖµ½ğ¶î´óÓÚ200 
 				{
 					p->money += money;
 					toxy(32, 10);
-					printf("æ­£åœ¨å……å€¼....");
-					Updata_User(head);//æ›´æ–°ç”¨æˆ·è¡¨ 
+					printf("ÕıÔÚ³äÖµ....");
+					Updata_User(head);//¸üĞÂÓÃ»§±í 
 					toxy(32, 10);
-					printf("å……å€¼æˆåŠŸ    ");
+					printf("³äÖµ³É¹¦    ");
 					toxy(32, 12);
-					printf("è¯·æŒ‰ä»»æ„é”®è¿”å›!");
+					printf("Çë°´ÈÎÒâ¼ü·µ»Ø!");
 					break;
 				}
-				else//å¦‚æœå……å€¼é‡‘é¢å°äº200
+				else//Èç¹û³äÖµ½ğ¶îĞ¡ÓÚ200
 				{
 					toxy(32, 10);
-					printf("ä¸€æ¬¡è‡³å°‘å……å€¼200å…ƒï¼");
+					printf("Ò»´ÎÖÁÉÙ³äÖµ200Ôª£¡");
 					Sleep(1500);
 					continue;
 				}
@@ -949,16 +949,16 @@ void Add_money(pUser head)//å……å€¼
 	getch();
 }
 
-void Apply_VIP(pUser head)//åŠç†ä¼šå‘˜
+void Apply_VIP(pUser head)//°ìÀí»áÔ±
 {
 	system("cls");
 	system("color 76");
-	pUser p = head;//headä¸ºä» ä¸Šä¸€çº§èœå•ä¼ è¿‡æ¥çš„å‚æ•°ï¼Œä¸ºç”¨æˆ·ä¿¡æ¯é“¾è¡¨çš„å¤´ç»“ç‚¹
+	pUser p = head;//headÎª´Ó ÉÏÒ»¼¶²Ëµ¥´«¹ıÀ´µÄ²ÎÊı£¬ÎªÓÃ»§ĞÅÏ¢Á´±íµÄÍ·½áµã
 	char t;
 	float money;
 	toxy(32, 6);
-	printf("ä½›è¥¿æ°´å§ä¼šå‘˜åŠç†é¡µé¢");
-	while (p != NULL && strcmp(p->userName, _userName) != 0)//éå†é“¾è¡¨ï¼Œå¯»æ‰¾å½“å‰ç™»å½•è´¦æˆ·çš„ä¿¡æ¯
+	printf("·ğÎ÷Ë®°É»áÔ±°ìÀíÒ³Ãæ");
+	while (p != NULL && strcmp(p->userName, _userName) != 0)//±éÀúÁ´±í£¬Ñ°ÕÒµ±Ç°µÇÂ¼ÕË»§µÄĞÅÏ¢
 	{
 		p = p->next;
 	}
@@ -966,27 +966,27 @@ void Apply_VIP(pUser head)//åŠç†ä¼šå‘˜
 	{
 		if (p != NULL)
 		{
-			if (p->isVIP == 1)//å¦‚æœå·²ç»æ˜¯ä¼šå‘˜ 
+			if (p->isVIP == 1)//Èç¹ûÒÑ¾­ÊÇ»áÔ± 
 			{
 				toxy(20, 8);
-				printf("æ‚¨å·²æ˜¯æœ¬åº—ä¼šå‘˜ï¼Œæ— éœ€å†æ¬¡åŠç†ï¼");
+				printf("ÄúÒÑÊÇ±¾µê»áÔ±£¬ÎŞĞèÔÙ´Î°ìÀí£¡");
 				toxy(32, 10);
-				printf("è¯·æŒ‰ä»»æ„é”®è¿”å›!");
+				printf("Çë°´ÈÎÒâ¼ü·µ»Ø!");
 				getch();
 				break;
 			}
-			else if (p->isVIP == 0)//å¦‚æœè¿˜æ²¡åŠç†ä¼šå‘˜ 
+			else if (p->isVIP == 0)//Èç¹û»¹Ã»°ìÀí»áÔ± 
 			{
 				toxy(30, 8);
-				printf("æç¤ºï¼š");
+				printf("ÌáÊ¾£º");
 				toxy(30, 9);
-				printf("1.åŠç†ä¼šå‘˜è‡³å°‘å……å€¼500");
+				printf("1.°ìÀí»áÔ±ÖÁÉÙ³äÖµ500");
 				toxy(30, 10);
-				printf("2.å†²500é€200ï¼Œå†²1000é€500");
+				printf("2.³å500ËÍ200£¬³å1000ËÍ500");
 				toxy(32, 12);
-				printf("æ˜¯å¦ç¡®è®¤åŠç†ä¼šå‘˜ï¼Ÿ");
+				printf("ÊÇ·ñÈ·ÈÏ°ìÀí»áÔ±£¿");
 				toxy(32, 13);
-				printf("1.æ˜¯\t2.å¦");
+				printf("1.ÊÇ\t2.·ñ");
 				while (1)
 				{
 					t = getch();
@@ -1002,7 +1002,7 @@ void Apply_VIP(pUser head)//åŠç†ä¼šå‘˜
 						system("cls");
 						HideCursor(1);
 						toxy(32, 10);
-						printf("è¯·è¾“å…¥å……å€¼é‡‘é¢ï¼š");
+						printf("ÇëÊäÈë³äÖµ½ğ¶î£º");
 						scanf("%f", &money);
 						if (money >= 500 && money < 1000)
 						{
@@ -1011,9 +1011,9 @@ void Apply_VIP(pUser head)//åŠç†ä¼šå‘˜
 							p->isVIP = 1;
 							Updata_User(head);
 							toxy(32, 12);
-							printf("æ­å–œï¼Œæ‚¨å·²æˆä¸ºæœ¬åº—å°Šè´µä¼šå‘˜ï¼");
+							printf("¹§Ï²£¬ÄúÒÑ³ÉÎª±¾µê×ğ¹ó»áÔ±£¡");
 							toxy(32, 14);
-							printf("è¯·æŒ‰ä»»æ„é”®è¿”å›ä¸»èœå•");
+							printf("Çë°´ÈÎÒâ¼ü·µ»ØÖ÷²Ëµ¥");
 							getch();
 							User_Menu();
 						}
@@ -1024,16 +1024,16 @@ void Apply_VIP(pUser head)//åŠç†ä¼šå‘˜
 							p->isVIP = 1;
 							Updata_User(head);
 							toxy(32, 12);
-							printf("æ­å–œï¼Œæ‚¨å·²æˆä¸ºæœ¬åº—å°Šè´µä¼šå‘˜ï¼");
+							printf("¹§Ï²£¬ÄúÒÑ³ÉÎª±¾µê×ğ¹ó»áÔ±£¡");
 							toxy(32, 14);
-							printf("è¯·æŒ‰ä»»æ„é”®è¿”å›ä¸»èœå•");
+							printf("Çë°´ÈÎÒâ¼ü·µ»ØÖ÷²Ëµ¥");
 							getch();
 							User_Menu();
 						}
 						else
 						{
 							toxy(32, 12);
-							printf("åŠç†ä¼šå‘˜è‡³å°‘å……å€¼500");
+							printf("°ìÀí»áÔ±ÖÁÉÙ³äÖµ500");
 							Sleep(2000);
 						}
 					}
@@ -1045,36 +1045,36 @@ void Apply_VIP(pUser head)//åŠç†ä¼šå‘˜
 	} while (1);
 }
 
-void Updata_User(pUser head)//æ›´æ–°ç”¨æˆ·æ–‡ä»¶ 
+void Updata_User(pUser head)//¸üĞÂÓÃ»§ÎÄ¼ş 
 {
 	FILE* fp;
-	pUser p = head->next;                           //ä½¿pæŒ‡å‘ç¬¬äºŒä¸ªç»“ç‚¹ 
-	fp = fopen("User.txt", "w");                  //å…ˆæ¸…ç©ºåŸæ–‡ä»¶å†…å®¹å†å°†ä¿®æ”¹åçš„ä¿¡æ¯å†™å…¥æ–‡ä»¶ 
+	pUser p = head->next;                           //Ê¹pÖ¸ÏòµÚ¶ş¸ö½áµã 
+	fp = fopen("User.txt", "w");                  //ÏÈÇå¿ÕÔ­ÎÄ¼şÄÚÈİÔÙ½«ĞŞ¸ÄºóµÄĞÅÏ¢Ğ´ÈëÎÄ¼ş 
 	if (fp == NULL)
 	{
 		printf("cannot open file\n");
 	}
-	if (fwrite(head, M, 1, fp) != 1)                 //å°†headæ‰€æŒ‡å‘çš„æ•°æ®å†™å…¥fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ 
+	if (fwrite(head, M, 1, fp) != 1)                 //½«headËùÖ¸ÏòµÄÊı¾İĞ´ÈëfpËùÖ¸ÏòµÄÎÄ¼ş 
 	{
 		printf("file write error\n");
 	}
-	fclose(fp);                         //å…³é—­æ–‡ä»¶ 
-	fp = fopen("User.txt", "a");          // æ‰“å¼€User.txtæ–‡ä»¶ï¼Œæ–¹å¼ä¸ºè¿½åŠ  
-	while (p != NULL)                    //pä¸ä¸ºç©ºå°±æ‰§è¡Œå¾ªç¯ä½“ 
+	fclose(fp);                         //¹Ø±ÕÎÄ¼ş 
+	fp = fopen("User.txt", "a");          // ´ò¿ªUser.txtÎÄ¼ş£¬·½Ê½Îª×·¼Ó 
+	while (p != NULL)                    //p²»Îª¿Õ¾ÍÖ´ĞĞÑ­»·Ìå 
 	{
-		if (fwrite(p, M, 1, fp) != 1)            //å°†pæ‰€æŒ‡å‘çš„1ä¸ªå¤§å°ä¸ºNçš„æ•°æ®ç»“æ„å†™å…¥fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ 
+		if (fwrite(p, M, 1, fp) != 1)            //½«pËùÖ¸ÏòµÄ1¸ö´óĞ¡ÎªNµÄÊı¾İ½á¹¹Ğ´ÈëfpËùÖ¸ÏòµÄÎÄ¼ş 
 		{
 			printf("file write error\n");
 		}
-		p = p->next;                     //ä½¿pæŒ‡å‘ä¸‹ä¸€ä¸ªç»“ç‚¹ 
+		p = p->next;                     //Ê¹pÖ¸ÏòÏÂÒ»¸ö½áµã 
 	}
-	fclose(fp);              //å…³é—­æ–‡ä»¶ 
+	fclose(fp);              //¹Ø±ÕÎÄ¼ş 
 }
 
-void Amend_passWord()//ä¿®æ”¹å¯†ç 
+void Amend_passWord()//ĞŞ¸ÄÃÜÂë
 {
-	system("cls");         //æ¸…å± 
-	HideCursor(0);  //éšè—å…‰æ ‡ï¼Œçœ‹ç€æ›´èˆ’æœ 
+	system("cls");         //ÇåÆÁ 
+	HideCursor(0);  //Òş²Ø¹â±ê£¬¿´×Å¸üÊæ·ş 
 	pUser p, head;
 	head = readUserFile();
 	do
@@ -1082,30 +1082,30 @@ void Amend_passWord()//ä¿®æ”¹å¯†ç 
 		p = head;
 		char password[18], newpassword[18], t, * q1, * q2;
 		int i = 0;
-		toxy(34, 5);          //å°†å…‰æ ‡ç§»åŠ¨åˆ°åæ ‡ä¸ºï¼ˆ50ï¼Œ5ï¼‰çš„ä½ç½® 
-		printf("ä½›è¥¿æ°´å§ç®¡ç†ç³»ç»Ÿ");
+		toxy(34, 5);          //½«¹â±êÒÆ¶¯µ½×ø±êÎª£¨50£¬5£©µÄÎ»ÖÃ 
+		printf("·ğÎ÷Ë®°É¹ÜÀíÏµÍ³");
 		toxy(34, 8);
-		printf("ä¿®æ”¹å¯†ç ");
+		printf("ĞŞ¸ÄÃÜÂë");
 		toxy(32, 10);
-		printf("è¯·è¾“å…¥æ—§å¯†ç ï¼š");
+		printf("ÇëÊäÈë¾ÉÃÜÂë£º");
 		q1 = HidePassword();
 		strcpy(password, q1);
 		toxy(32, 12);
-		printf("è¯·è¾“å…¥æ–°å¯†ç ï¼š");
+		printf("ÇëÊäÈëĞÂÃÜÂë£º");
 		q2 = HidePassword();
 		strcpy(newpassword, q2);
-		while (p != NULL && strcmp(p->userName, _userName) != 0)//éå†é“¾è¡¨ï¼Œå¯»æ‰¾å½“å‰ç™»é™†è´¦æˆ·çš„è´¦å· 
+		while (p != NULL && strcmp(p->userName, _userName) != 0)//±éÀúÁ´±í£¬Ñ°ÕÒµ±Ç°µÇÂ½ÕË»§µÄÕËºÅ 
 		{
 			p = p->next;
 		}
-		if (p != NULL)                   //å¦‚æœpä¸ä¸ºç©º 
+		if (p != NULL)                   //Èç¹ûp²»Îª¿Õ 
 		{
-			if (strcmp(p->passWord, password) == 0)          //å¦‚æœæ—§å¯†ç è¾“å…¥æ­£ç¡® 
+			if (strcmp(p->passWord, password) == 0)          //Èç¹û¾ÉÃÜÂëÊäÈëÕıÈ· 
 			{
-				strcpy(p->passWord, newpassword);         //å°†æ—§å¯†ç æ”¹ä¸ºæ–°å¯†ç  
-				break;                                   //è·³å‡ºå¾ªç¯ 
+				strcpy(p->passWord, newpassword);         //½«¾ÉÃÜÂë¸ÄÎªĞÂÃÜÂë 
+				break;                                   //Ìø³öÑ­»· 
 			}
-			else                                         //å¦‚æœæ—§å¯†ç è¾“å…¥é”™è¯¯ 
+			else                                         //Èç¹û¾ÉÃÜÂëÊäÈë´íÎó 
 			{
 				system("cls");
 				toxy(30, 8);
@@ -1113,18 +1113,18 @@ void Amend_passWord()//ä¿®æ”¹å¯†ç 
 				toxy(30, 9);
 				printf("|                        |");
 				toxy(30, 10);
-				printf("|  å¯†ç é”™è¯¯ï¼æ˜¯å¦ç»§ç»­ï¼Ÿ  |");
+				printf("|  ÃÜÂë´íÎó£¡ÊÇ·ñ¼ÌĞø£¿  |");
 				toxy(30, 11);
 				printf("|                        |");
 				toxy(30, 12);
-				printf("|  1.æ˜¯           2.å¦   |");
+				printf("|  1.ÊÇ           2.·ñ   |");
 				toxy(30, 13);
 				printf("|                        |");
 				toxy(30, 14);
 				printf("--------------------------");
 				while (1)
 				{
-					t = getch();                              //è¾“å…¥t 
+					t = getch();                              //ÊäÈët 
 					if (t == '1')
 					{
 						system("cls");
@@ -1135,14 +1135,14 @@ void Amend_passWord()//ä¿®æ”¹å¯†ç 
 				}
 			}
 		}
-	} while (1);                                //æ°¸è¿œä¸ºçœŸ 
-	Updata_User(head);//ä¿®æ”¹å¯†ç  
+	} while (1);                                //ÓÀÔ¶ÎªÕæ 
+	Updata_User(head);//ĞŞ¸ÄÃÜÂë 
 	toxy(32, 14);
-	printf("ä¿®æ”¹æˆåŠŸï¼æ­£åœ¨è·³è½¬...");
-	Sleep(500);       //æš‚åœ0.5ç§’ 
+	printf("ĞŞ¸Ä³É¹¦£¡ÕıÔÚÌø×ª...");
+	Sleep(500);       //ÔİÍ£0.5Ãë 
 }
 
-void User_Wallet()//æˆ‘çš„é’±åŒ…
+void User_Wallet()//ÎÒµÄÇ®°ü
 {
 	system("cls");
 	system("color 78");
@@ -1156,50 +1156,50 @@ void User_Wallet()//æˆ‘çš„é’±åŒ…
 	if (p != NULL)
 	{
 		toxy(32, 10);
-		printf("è´¦æˆ·ä½™é¢ä¸ºï¼š%.2f", p->money);
+		printf("ÕË»§Óà¶îÎª£º%.2f", p->money);
 		toxy(32, 12);
-		printf("è¯·æŒ‰ä»»æ„é”®è¿”å›");
+		printf("Çë°´ÈÎÒâ¼ü·µ»Ø");
 	}
 	getch();
 }
 
-void Change()//åˆ‡æ¢è´¦å· 
+void Change()//ÇĞ»»ÕËºÅ 
 {
 	system("cls");
 	Welcome();
 }
 
-void Exit()//é€€å‡ºç‚¹é¤ç³»ç»Ÿ 
+void Exit()//ÍË³öµã²ÍÏµÍ³ 
 {
 	char t;
 	toxy(30, 10);
 	printf("-----------------------");
 	toxy(30, 11);
-	printf("|   æ‚¨ç¡®å®šè¦é€€å‡ºå—ï¼Ÿ  |");
+	printf("|   ÄúÈ·¶¨ÒªÍË³öÂğ£¿  |");
 	toxy(30, 13);
-	printf("| 1.ç¡®å®š     2.å–æ¶ˆ   |");
+	printf("| 1.È·¶¨     2.È¡Ïû   |");
 	toxy(30, 14);
 	printf("-----------------------");
 	while (1)
 	{
-		t = getch();         //è¾“å…¥t
+		t = getch();         //ÊäÈët
 		switch (t)
 		{
 		case '1':
 			system("cls");
 			toxy(32, 10);
-			printf("æ­£åœ¨å®‰å…¨é€€å‡º....");
-			Sleep(1000);     //æš‚åœ1ç§’ 
+			printf("ÕıÔÚ°²È«ÍË³ö....");
+			Sleep(1000);     //ÔİÍ£1Ãë 
 			system("cls");
 			toxy(32, 10);
-			printf("å·²å®‰å…¨é€€å‡ºè½¯ä»¶");
+			printf("ÒÑ°²È«ÍË³öÈí¼ş");
 			toxy(32, 12);
-			printf("è°¢è°¢ä½¿ç”¨ï¼");
+			printf("Ğ»Ğ»Ê¹ÓÃ£¡");
 			toxy(32, 14);
 			printf("by-by^_^");
-			exit(0);  break; //ç»ˆæ­¢ç¨‹åº 
+			exit(0);  break; //ÖÕÖ¹³ÌĞò 
 		case '2':
-			break;   //è°ƒç”¨å‡½æ•°ï¼Œè¿›å…¥èœå• 
+			break;   //µ÷ÓÃº¯Êı£¬½øÈë²Ëµ¥ 
 		default:break;
 		}
 		if (t == '2')
@@ -1207,37 +1207,37 @@ void Exit()//é€€å‡ºç‚¹é¤ç³»ç»Ÿ
 	}
 }
 
-void Administrator_Menu()//ç®¡ç†å‘˜èœå•
+void Administrator_Menu()//¹ÜÀíÔ±²Ëµ¥
 {
-	char t;//ç”¨äºé€‰æ‹©èœå•é€‰é¡¹ 
+	char t;//ÓÃÓÚÑ¡Ôñ²Ëµ¥Ñ¡Ïî 
 	do
 	{
 		system("cls");
-		HideCursor(0); //éšè—å…‰æ ‡ 
+		HideCursor(0); //Òş²Ø¹â±ê 
 		system("color 74");
 		toxy(32, 3);
-		printf("ä½›è¥¿æ°´å§ç®¡ç†ç³»ç»Ÿï¼");
+		printf("·ğÎ÷Ë®°É¹ÜÀíÏµÍ³£¡");
 		toxy(32, 4);
-		printf("å½“å‰ç®¡ç†å‘˜ï¼š%s", _userName);
+		printf("µ±Ç°¹ÜÀíÔ±£º%s", _userName);
 		toxy(30, 5);
 		printf("*********************");
 		toxy(32, 7);
-		printf("|  1.èœå“  ä¿¡æ¯  |");
+		printf("|  1.²ËÆ·  ĞÅÏ¢  |");
 		toxy(32, 9);
-		printf("|  2.é¤æ¡Œ  ç®¡ç†  |");
+		printf("|  2.²Í×À  ¹ÜÀí  |");
 		toxy(32, 11);
-		printf("|  3.æŸ¥çœ‹  ç”¨æˆ·  |");
+		printf("|  3.²é¿´  ÓÃ»§  |");
 		toxy(32, 13);
-		printf("|  4.æœ¬åº—  ä¼šå‘˜  |");
+		printf("|  4.±¾µê  »áÔ±  |");
 		/*toxy(32, 15);
-		printf("|  5.è®¾ç½®ç®¡ç†å‘˜  |");*/
+		printf("|  5.ÉèÖÃ¹ÜÀíÔ±  |");*/
 		toxy(32, 17);
-		printf("|  6.ä¿®æ”¹  å¯†ç   |");
+		printf("|  6.ĞŞ¸Ä  ÃÜÂë  |");
 		toxy(32, 19);
-		printf("|  7.åˆ‡æ¢  è´¦å·  |");
+		printf("|  7.ÇĞ»»  ÕËºÅ  |");
 		toxy(32, 21);
-		printf("|  8.é€€å‡º  ç³»ç»Ÿ  |");
-		t = getch();//ä¸å›æ˜¾å‡½æ•°ï¼Œè¾“å…¥ä¸€ä¸ªå€¼ 
+		printf("|  8.ÍË³ö  ÏµÍ³  |");
+		t = getch();//²»»ØÏÔº¯Êı£¬ÊäÈëÒ»¸öÖµ 
 		switch (t)
 		{
 		case '1':Food(); break;
@@ -1250,25 +1250,25 @@ void Administrator_Menu()//ç®¡ç†å‘˜èœå•
 		case '8':Exit(); break;
 		default:break;
 		}
-	} while (1);//æ°¸è¿œ ä¸ºçœŸ 
+	} while (1);//ÓÀÔ¶ ÎªÕæ 
 }
 
-void Administrator_Login()//ç®¡ç†å‘˜ç™»å½• 
+void Administrator_Login()//¹ÜÀíÔ±µÇÂ¼ 
 {
-	//char* q, t, c;//qæŒ‡é’ˆç”¨äºæ¥æ”¶ *HidePassword()å‡½æ•°è¿”å›çš„æŒ‡å‘å¯†ç çš„æŒ‡é’ˆï¼Œtå’Œcå‡ç”¨äºé€‰æ‹© 
-	//pUser p = readUserFile();//ä»æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€ 
+	//char* q, t, c;//qÖ¸ÕëÓÃÓÚ½ÓÊÕ *HidePassword()º¯Êı·µ»ØµÄÖ¸ÏòÃÜÂëµÄÖ¸Õë£¬tºÍc¾ùÓÃÓÚÑ¡Ôñ 
+	//pUser p = readUserFile();//´ÓÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ· 
 	/*do
 	{*/
-	HideCursor(1);//æ˜¾ç¤ºç®¡å…‰æ ‡ 
-	system("cls");//æ¸…å± 
-	system("color 73");//è®¾ç½®é¢œè‰² 
+	HideCursor(1);//ÏÔÊ¾¹Ü¹â±ê 
+	system("cls");//ÇåÆÁ 
+	system("color 73");//ÉèÖÃÑÕÉ« 
 	toxy(28, 8);
-	printf("è½½å…¥ä¸­......");
-	Sleep(500);      //æš‚åœ0.5ç§’ 
-	Administrator_Menu();         //è´¦å·å¯†ç å‡æ­£ç¡®ï¼Œè¿›å…¥ç®¡ç†å‘˜ä¸»èœå• 
+	printf("ÔØÈëÖĞ......");
+	Sleep(500);      //ÔİÍ£0.5Ãë 
+	Administrator_Menu();         //ÕËºÅÃÜÂë¾ùÕıÈ·£¬½øÈë¹ÜÀíÔ±Ö÷²Ëµ¥ 
 }
 
-void Food()//èœå“ä¿¡æ¯
+void Food()//²ËÆ·ĞÅÏ¢
 {
 	system("color 74");
 	char t;
@@ -1276,15 +1276,15 @@ void Food()//èœå“ä¿¡æ¯
 	{
 		system("cls");
 		toxy(32, 6);
-		printf("èœå“ä¿¡æ¯");
+		printf("²ËÆ·ĞÅÏ¢");
 		toxy(28, 7);
 		printf("-----------------");
 		toxy(30, 9);
-		printf(" 1) æ·»åŠ èœå•");
+		printf(" 1) Ìí¼Ó²Ëµ¥");
 		toxy(30, 11);
-		printf(" 2) èœå•åˆ—è¡¨");
+		printf(" 2) ²Ëµ¥ÁĞ±í");
 		toxy(30, 13);
-		printf(" 3) è¿”å›ä¸Šä¸€çº§");
+		printf(" 3) ·µ»ØÉÏÒ»¼¶");
 		t = getch();
 		switch (t)
 		{
@@ -1298,45 +1298,45 @@ void Food()//èœå“ä¿¡æ¯
 	} while (1);
 }
 /// ///////////////////////////////
-void save_drinkBeverage(pDRI p)//ä¿å­˜é¥®å“ä¿¡æ¯
+void save_drinkBeverage(pDRI p)//±£´æÒûÆ·ĞÅÏ¢
 {
-	FILE* fp;       //æ–‡ä»¶æŒ‡é’ˆ 
-	fp = fopen("DrinkBeverage.txt", "a+");    //ä»¥è¿½åŠ çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶ 
+	FILE* fp;       //ÎÄ¼şÖ¸Õë 
+	fp = fopen("DrinkBeverage.txt", "a+");    //ÒÔ×·¼ÓµÄ·½Ê½´ò¿ªÎÄ¼ş 
 	if (fp == NULL)
 	{
 		printf("cannot open file\n");
 	}
-	if (fwrite(p, Q, 1, fp) != 1)    //å°†p1æ‰€æŒ‡å‘çš„1ä¸ªå¤§å°ä¸ºNçš„ç»“æ„ä½“å†™å…¥fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ä¸­ 
+	if (fwrite(p, Q, 1, fp) != 1)    //½«p1ËùÖ¸ÏòµÄ1¸ö´óĞ¡ÎªNµÄ½á¹¹ÌåĞ´ÈëfpËùÖ¸ÏòµÄÎÄ¼şÖĞ 
 	{
 		printf("file write error\n");
 	}
-	fclose(fp);        //å…³é—­æ–‡ä»¶ 
+	fclose(fp);        //¹Ø±ÕÎÄ¼ş 
 }
 /// /////////////////////////////////////
-pDRI readDrinkBeverageFile()//ä»é¥®å“æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€
+pDRI readDrinkBeverageFile()//´ÓÒûÆ·ÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ·
 {
-	FILE* fp;       //æ–‡ä»¶æŒ‡é’ˆ 
-	int n = 0;//è®°å½•é“¾è¡¨ çš„ç»“ç‚¹æ•° 
-	pDRI head = NULL;//å®šä¹‰å¤´æŒ‡é’ˆ 
+	FILE* fp;       //ÎÄ¼şÖ¸Õë 
+	int n = 0;//¼ÇÂ¼Á´±í µÄ½áµãÊı 
+	pDRI head = NULL;//¶¨ÒåÍ·Ö¸Õë 
 	pDRI p2 = NULL, p = NULL, pre = NULL;
-	fp = fopen("DrinkBeverage.txt", "a+");     //ä»¥åªè¯»çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶ 
+	fp = fopen("DrinkBeverage.txt", "a+");     //ÒÔÖ»¶ÁµÄ·½Ê½´ò¿ªÎÄ¼ş 
 	if (fp == NULL)
 	{
 		printf("cannot open file\n");
 	}
 	else
 	{
-		while (!feof(fp))        //åˆ¤æ–­æ–‡ä»¶ä½ç½®æ ‡å¿—æ˜¯å¦ç§»åŠ¨åˆ°æ–‡ä»¶æœ«å°¾ 
+		while (!feof(fp))        //ÅĞ¶ÏÎÄ¼şÎ»ÖÃ±êÖ¾ÊÇ·ñÒÆ¶¯µ½ÎÄ¼şÄ©Î² 
 		{
 			n++;
-			p = (pDRI)malloc(Q); //å‘å†…å­˜ç”³è¯·ä¸€æ®µç©ºé—´ 
-			fread(p, Q, 1, fp);     //å°†fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ä¸­çš„å†…å®¹èµ‹ç»™p
+			p = (pDRI)malloc(Q); //ÏòÄÚ´æÉêÇëÒ»¶Î¿Õ¼ä 
+			fread(p, Q, 1, fp);     //½«fpËùÖ¸ÏòµÄÎÄ¼şÖĞµÄÄÚÈİ¸³¸øp
 			if (n == 1)
 			{
 				head = p;
 				p2 = p;
 			}
-			else             //åˆ›å»ºé“¾è¡¨ 
+			else             //´´½¨Á´±í 
 			{
 				pre = p2;
 				p2->next = p;
@@ -1349,14 +1349,14 @@ pDRI readDrinkBeverageFile()//ä»é¥®å“æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸
 		head->next = NULL;
 	else
 		pre->next = NULL;
-	fclose(fp);    //å…³é—­æ–‡ä»¶ 
-	return head;   //è¿”å›å¤´æŒ‡é’ˆ 
+	fclose(fp);    //¹Ø±ÕÎÄ¼ş 
+	return head;   //·µ»ØÍ·Ö¸Õë 
 }
 
-void Add_Food()  //æ·»åŠ èœå•
+void Add_Food()  //Ìí¼Ó²Ëµ¥
 {
-	HideCursor(1);//æ˜¾ç¤ºå…‰æ ‡ 
-	pDRI p3;//é¥®å“ 
+	HideCursor(1);//ÏÔÊ¾¹â±ê 
+	pDRI p3;//ÒûÆ· 
 	char name[20];
 	float price = 0;
 	/*int type = 1;*/
@@ -1366,27 +1366,27 @@ void Add_Food()  //æ·»åŠ èœå•
 		system("cls");
 		p3 = (pDRI)malloc(Q);
 		toxy(30, 6);
-		printf("è¯·è¾“å…¥é¥®å“å:");
+		printf("ÇëÊäÈëÒûÆ·Ãû:");
 		toxy(30, 8);
-		printf("è¯·è¾“å…¥ä»·æ ¼:");
+		printf("ÇëÊäÈë¼Û¸ñ:");
 		toxy(30, 10);
-		printf("è¯·è¾“å…¥åŸæ–™é‡(æ²¡æœ‰å¡«0):");
+		printf("ÇëÊäÈëÔ­ÁÏÁ¿(Ã»ÓĞÌî0):");
 		toxy(30, 12);
-		printf("æ°´(mL):");
+		printf("Ë®(mL):");
 		toxy(30, 14);
-		printf("å¥¶(mL):");
+		printf("ÄÌ(mL):");
 		toxy(30, 16);
-		printf("èŒ¶ç²‰(mL):");
+		printf("²è·Û(mL):");
 		toxy(30, 18);
-		printf("å†°(mL):");
+		printf("±ù(mL):");
 		toxy(30, 20);
-		printf("ç³–(mL):");
+		printf("ÌÇ(mL):");
 		toxy(30, 22);
-		printf("é¸¡å°¾é…’(mL):");
+		printf("¼¦Î²¾Æ(mL):");
 		toxy(30, 24);
-		printf("æ¤°æœ(mL):");
+		printf("Ò¬¹û(mL):");
 		toxy(30, 26);
-		printf("å°æ–™(mL):");
+		printf("Ğ¡ÁÏ(mL):");
 
 		toxy(50, 6);
 		scanf("%s", name);
@@ -1414,7 +1414,7 @@ void Add_Food()  //æ·»åŠ èœå•
 		toxy(28, 14);
 		printf("---------------------------------");
 		toxy(28, 16);
-		printf("æ·»åŠ æˆåŠŸ!æ˜¯å¦ç»§ç»­?[(1)æ˜¯(2)å¦]");
+		printf("Ìí¼Ó³É¹¦!ÊÇ·ñ¼ÌĞø?[(1)ÊÇ(2)·ñ]");
 		toxy(28, 18);
 		printf("---------------------------------");
 		while (1)
@@ -1431,41 +1431,41 @@ void Add_Food()  //æ·»åŠ èœå•
 
 }
 
-void List_Food()  //èœå•åˆ—è¡¨
+void List_Food()  //²Ëµ¥ÁĞ±í
 {
 	system("cls");
 	int i = 8;
 	toxy(30, 4);
-	printf("èœå•åˆ—è¡¨(æŒ‰ä»»æ„é”®ç»§ç»­)");
-	pDRI p3;//é¥®å“ 
-	p3 = readDrinkBeverageFile();//ä»é¥®å“æ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€ 
+	printf("²Ëµ¥ÁĞ±í(°´ÈÎÒâ¼ü¼ÌĞø)");
+	pDRI p3;//ÒûÆ· 
+	p3 = readDrinkBeverageFile();//´ÓÒûÆ·ÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ· 
 	toxy(10, 6);
-	printf("é¥®å“å\t\tä»·æ ¼\t\t\tåŸæ–™è¡¨");
+	printf("ÒûÆ·Ãû\t\t¼Û¸ñ\t\t\tÔ­ÁÏ±í");
 	toxy(10, 7);
 	printf("----------------------------------------------------------------------------------------------------");
 	toxy(24, i);
-	/*printf("é¥®å“ï¼š");*/
+	/*printf("ÒûÆ·£º");*/
 	i++;
 	while (p3 != NULL)
 	{
-		toxy(12, i);//0æ˜¯æ°´(mL),1æ˜¯ç”Ÿç‰›ä¹³(mL),2æ˜¯èŒ¶ç²‰(g),3æ˜¯å†°(å—),4æ˜¯ç³–(g),5æ˜¯é¸¡å°¾é…’(mL),6æ˜¯æ¤°æœ(g),7æ˜¯å°æ–™(g)
+		toxy(12, i);//0ÊÇË®(mL),1ÊÇÉúÅ£Èé(mL),2ÊÇ²è·Û(g),3ÊÇ±ù(¿é),4ÊÇÌÇ(g),5ÊÇ¼¦Î²¾Æ(mL),6ÊÇÒ¬¹û(g),7ÊÇĞ¡ÁÏ(g)
 		printf("%-20s %.2f", p3->name, p3->price);
 		toxy(44, i);
-		printf("æ°´%dmL;", p3->origin[0]);
-		if (p3->origin[1]) printf("ç”Ÿç‰›ä¹³%dmL;", p3->origin[1]);
-		if (p3->origin[2]) printf("èŒ¶ç²‰%dg;", p3->origin[2]);
-		if (p3->origin[3]) printf("å†°å—%då—;", p3->origin[3]);
-		if (p3->origin[4]) printf("ç³–%dg;", p3->origin[4]);
-		if (p3->origin[5]) printf("é¸¡å°¾é…’%dmL;", p3->origin[5]);
-		if (p3->origin[6]) printf("æ¤°æœ%dg;", p3->origin[6]);
-		if (p3->origin[7]) printf("å°æ–™%dg;", p3->origin[7]);
+		printf("Ë®%dmL;", p3->origin[0]);
+		if (p3->origin[1]) printf("ÉúÅ£Èé%dmL;", p3->origin[1]);
+		if (p3->origin[2]) printf("²è·Û%dg;", p3->origin[2]);
+		if (p3->origin[3]) printf("±ù¿é%d¿é;", p3->origin[3]);
+		if (p3->origin[4]) printf("ÌÇ%dg;", p3->origin[4]);
+		if (p3->origin[5]) printf("¼¦Î²¾Æ%dmL;", p3->origin[5]);
+		if (p3->origin[6]) printf("Ò¬¹û%dg;", p3->origin[6]);
+		if (p3->origin[7]) printf("Ğ¡ÁÏ%dg;", p3->origin[7]);
 		i++;
 		p3 = p3->next;
 	}
 	getch();
 }
 
-void Table()//é¤æ¡Œç®¡ç†
+void Table()//²Í×À¹ÜÀí
 {
 	char t;
 	do
@@ -1473,17 +1473,17 @@ void Table()//é¤æ¡Œç®¡ç†
 		system("cls");
 		HideCursor(0);
 		toxy(32, 4);
-		printf("é¤æ¡Œç®¡ç†");
+		printf("²Í×À¹ÜÀí");
 		toxy(26, 5);
 		printf("-------------------");
 		toxy(30, 7);
-		printf("1) æ·»åŠ é¤æ¡Œ");
+		printf("1) Ìí¼Ó²Í×À");
 		toxy(30, 9);
-		printf("2) é¤æ¡Œåˆ—è¡¨");
+		printf("2) ²Í×ÀÁĞ±í");
 		toxy(30, 11);
-		printf("3) æ¸…ç†é¤æ¡Œ");
+		printf("3) ÇåÀí²Í×À");
 		toxy(30, 13);
-		printf("4) è¿”å›ä¸Šä¸€çº§");
+		printf("4) ·µ»ØÉÏÒ»¼¶");
 		t = getch();
 		switch (t)
 		{
@@ -1498,45 +1498,45 @@ void Table()//é¤æ¡Œç®¡ç†
 	} while (1);
 }
 
-void save_Table(pTable p)//ä¿å­˜é¤æ¡Œä¿¡æ¯
+void save_Table(pTable p)//±£´æ²Í×ÀĞÅÏ¢
 {
-	FILE* fp;       //æ–‡ä»¶æŒ‡é’ˆ 
-	fp = fopen("Table.txt", "a+");    //ä»¥è¿½åŠ çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶ 
+	FILE* fp;       //ÎÄ¼şÖ¸Õë 
+	fp = fopen("Table.txt", "a+");    //ÒÔ×·¼ÓµÄ·½Ê½´ò¿ªÎÄ¼ş 
 	if (fp == NULL)
 	{
 		printf("cannot open file\n");
 	}
-	if (fwrite(p, X, 1, fp) != 1)    //å°†p1æ‰€æŒ‡å‘çš„1ä¸ªå¤§å°ä¸ºNçš„æ•°æ®ç»“æ„å†™å…¥fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ä¸­ 
+	if (fwrite(p, X, 1, fp) != 1)    //½«p1ËùÖ¸ÏòµÄ1¸ö´óĞ¡ÎªNµÄÊı¾İ½á¹¹Ğ´ÈëfpËùÖ¸ÏòµÄÎÄ¼şÖĞ 
 	{
 		printf("file write error\n");
 	}
-	fclose(fp);        //å…³é—­æ–‡ä»¶ 
+	fclose(fp);        //¹Ø±ÕÎÄ¼ş 
 }
 
-pTable readTableFile()//ä»é¤æ¡Œæ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤´åœ°å€
+pTable readTableFile()//´Ó²Í×ÀÎÄ¼şÖĞ¶ÁÈ¡ÓÃ»§ĞÅÏ¢£¬·µ»ØÒ»¸ö±íÍ·µØÖ·
 {
-	FILE* fp;       //æ–‡ä»¶æŒ‡é’ˆ 
-	int n = 0;//è®°å½•é“¾è¡¨ çš„ç»“ç‚¹æ•° 
-	pTable head = NULL;//å®šä¹‰å¤´æŒ‡é’ˆ 
+	FILE* fp;       //ÎÄ¼şÖ¸Õë 
+	int n = 0;//¼ÇÂ¼Á´±í µÄ½áµãÊı 
+	pTable head = NULL;//¶¨ÒåÍ·Ö¸Õë 
 	pTable p2 = NULL, p, pre = NULL;
-	fp = fopen("Table.txt", "a+");     //ä»¥åªè¯»çš„æ–¹å¼æ‰“å¼€æ–‡ä»¶ 
+	fp = fopen("Table.txt", "a+");     //ÒÔÖ»¶ÁµÄ·½Ê½´ò¿ªÎÄ¼ş 
 	if (fp == NULL)
 	{
 		printf("cannot open file\n");
 	}
 	else
 	{
-		while (!feof(fp))        //åˆ¤æ–­æ–‡ä»¶ä½ç½®æ ‡å¿—æ˜¯å¦ç§»åŠ¨åˆ°æ–‡ä»¶æœ«å°¾ 
+		while (!feof(fp))        //ÅĞ¶ÏÎÄ¼şÎ»ÖÃ±êÖ¾ÊÇ·ñÒÆ¶¯µ½ÎÄ¼şÄ©Î² 
 		{
 			n++;
-			p = (pTable)malloc(X); //å‘å†…å­˜ç”³è¯·ä¸€æ®µç©ºé—´ 
-			fread(p, X, 1, fp);     //å°†fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ä¸­çš„å†…å®¹èµ‹ç»™p
+			p = (pTable)malloc(X); //ÏòÄÚ´æÉêÇëÒ»¶Î¿Õ¼ä 
+			fread(p, X, 1, fp);     //½«fpËùÖ¸ÏòµÄÎÄ¼şÖĞµÄÄÚÈİ¸³¸øp
 			if (n == 1)
 			{
 				head = p;
 				p2 = p;
 			}
-			else             //åˆ›å»ºé“¾è¡¨ 
+			else             //´´½¨Á´±í 
 			{
 				pre = p2;
 				p2->next = p;
@@ -1549,13 +1549,13 @@ pTable readTableFile()//ä»é¤æ¡Œæ–‡ä»¶ä¸­è¯»å–ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›ä¸€ä¸ªè¡¨å¤
 		head->next = NULL;
 	else
 		pre->next = NULL;
-	fclose(fp);    //å…³é—­æ–‡ä»¶ 
-	return head;   //è¿”å›å¤´æŒ‡é’ˆ 
+	fclose(fp);    //¹Ø±ÕÎÄ¼ş 
+	return head;   //·µ»ØÍ·Ö¸Õë 
 }
 
-void Add_Table()//æ·»åŠ é¤æ¡Œ 
+void Add_Table()//Ìí¼Ó²Í×À 
 {
-	HideCursor(1);//æ˜¾ç¤ºå…‰æ ‡ 
+	HideCursor(1);//ÏÔÊ¾¹â±ê 
 	pTable p, p1;
 	p1 = readTableFile();
 	char t;
@@ -1566,9 +1566,9 @@ void Add_Table()//æ·»åŠ é¤æ¡Œ
 		system("cls");
 		p = (pTable)malloc(X);
 		toxy(26, 6);
-		printf("è¯·è¾“å…¥é¤æ¡Œç¼–å·:");
+		printf("ÇëÊäÈë²Í×À±àºÅ:");
 		toxy(26, 8);
-		printf("è¯·è¾“å…¥å¯åäººæ•°:");
+		printf("ÇëÊäÈë¿É×øÈËÊı:");
 		toxy(42, 6);
 		scanf("%d", &ID);
 		toxy(42, 8);
@@ -1580,17 +1580,17 @@ void Add_Table()//æ·»åŠ é¤æ¡Œ
 		if (p1 != NULL)
 		{
 			toxy(30, 10);
-			printf("è¯¥é¤æ¡Œç¼–å·å·²å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
+			printf("¸Ã²Í×À±àºÅÒÑ´æÔÚ£¬ÇëÖØĞÂÊäÈë£¡");
 			Sleep(2000);
 			continue;
 		}
 		p->ID = ID;
 		p->People = 0;
 		p->count = count;
-		strcpy(p->Username, "æ— ");
+		strcpy(p->Username, "ÎŞ");
 		save_Table(p);
 		toxy(24, 10);
-		printf("æ·»åŠ æˆåŠŸï¼æ˜¯å¦ç»§ç»­ï¼Ÿ(1.æ˜¯   2.å¦)");
+		printf("Ìí¼Ó³É¹¦£¡ÊÇ·ñ¼ÌĞø£¿(1.ÊÇ   2.·ñ)");
 		while (1)
 		{
 			t = getch();
@@ -1604,7 +1604,7 @@ void Add_Table()//æ·»åŠ é¤æ¡Œ
 	} while (1);
 }
 
-void Administrator_List_Table()//é¤æ¡Œåˆ—è¡¨
+void Administrator_List_Table()//²Í×ÀÁĞ±í
 {
 	system("cls");
 	pTable p, head;
@@ -1612,9 +1612,9 @@ void Administrator_List_Table()//é¤æ¡Œåˆ—è¡¨
 	p = head;
 	int i = 11;
 	toxy(32, 6);
-	printf("é¤æ¡Œåˆ—è¡¨(æŒ‰ä»»æ„é”®ç»§ç»­)");
+	printf("²Í×ÀÁĞ±í(°´ÈÎÒâ¼ü¼ÌĞø)");
 	toxy(22, 8);
-	printf("é¤æ¡Œç¼–å· | å¯åäººæ•° | å·²åäººæ•° | è®¢é¤äºº");
+	printf("²Í×À±àºÅ | ¿É×øÈËÊı | ÒÑ×øÈËÊı | ¶©²ÍÈË");
 	toxy(20, 9);
 	printf("--------------------------------------------");
 	while (p != NULL)
@@ -1627,22 +1627,22 @@ void Administrator_List_Table()//é¤æ¡Œåˆ—è¡¨
 	getch();
 }
 
-void Clear_Table()//æ¸…ç†é¤æ¡Œ
+void Clear_Table()//ÇåÀí²Í×À
 {
 	char t;
 	do
 	{
 		system("cls");
 		toxy(32, 4);
-		printf("æ¸…ç†é¤æ¡Œ");
+		printf("ÇåÀí²Í×À");
 		toxy(26, 5);
 		printf("-------------------");
 		toxy(30, 7);
-		printf("1) æ¸…ç†æŒ‡å®šé¤æ¡Œ");
+		printf("1) ÇåÀíÖ¸¶¨²Í×À");
 		toxy(30, 9);
-		printf("2) æ¸…ç†æ‰€æœ‰é¤æ¡Œ");
+		printf("2) ÇåÀíËùÓĞ²Í×À");
 		toxy(30, 11);
-		printf("3) è¿”å›ä¸Šä¸€çº§");
+		printf("3) ·µ»ØÉÏÒ»¼¶");
 		t = getch();
 		switch (t)
 		{
@@ -1656,33 +1656,33 @@ void Clear_Table()//æ¸…ç†é¤æ¡Œ
 	} while (1);
 }
 
-void Updata_Table(pTable head)//æ›´æ–°é¤æ¡Œæ–‡ä»¶
+void Updata_Table(pTable head)//¸üĞÂ²Í×ÀÎÄ¼ş
 {
 	FILE* fp;
-	pTable p = head->next;                           //ä½¿pæŒ‡å‘ç¬¬äºŒä¸ªç»“ç‚¹ 
-	fp = fopen("Table.txt", "w");                  //å…ˆæ¸…ç©ºåŸæ–‡ä»¶å†…å®¹å†å°†ä¿®æ”¹åçš„ä¿¡æ¯å†™å…¥æ–‡ä»¶ 
+	pTable p = head->next;                           //Ê¹pÖ¸ÏòµÚ¶ş¸ö½áµã 
+	fp = fopen("Table.txt", "w");                  //ÏÈÇå¿ÕÔ­ÎÄ¼şÄÚÈİÔÙ½«ĞŞ¸ÄºóµÄĞÅÏ¢Ğ´ÈëÎÄ¼ş 
 	if (fp == NULL)
 	{
 		printf("cannot open file\n");
 	}
-	if (fwrite(head, X, 1, fp) != 1)                 //å°†headæ‰€æŒ‡å‘çš„æ•°æ®å†™å…¥fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ 
+	if (fwrite(head, X, 1, fp) != 1)                 //½«headËùÖ¸ÏòµÄÊı¾İĞ´ÈëfpËùÖ¸ÏòµÄÎÄ¼ş 
 	{
 		printf("file write error\n");
 	}
-	fclose(fp);                         //å…³é—­æ–‡ä»¶ 
-	fp = fopen("Table.txt", "a");          // æ‰“å¼€User.txtæ–‡ä»¶ï¼Œæ–¹å¼ä¸ºè¿½åŠ  
-	while (p != NULL)                    //pä¸ä¸ºç©ºå°±æ‰§è¡Œå¾ªç¯ä½“ 
+	fclose(fp);                         //¹Ø±ÕÎÄ¼ş 
+	fp = fopen("Table.txt", "a");          // ´ò¿ªUser.txtÎÄ¼ş£¬·½Ê½Îª×·¼Ó 
+	while (p != NULL)                    //p²»Îª¿Õ¾ÍÖ´ĞĞÑ­»·Ìå 
 	{
-		if (fwrite(p, X, 1, fp) != 1)            //å°†pæ‰€æŒ‡å‘çš„1ä¸ªå¤§å°ä¸ºNçš„æ•°æ®ç»“æ„å†™å…¥fpæ‰€æŒ‡å‘çš„æ–‡ä»¶ 
+		if (fwrite(p, X, 1, fp) != 1)            //½«pËùÖ¸ÏòµÄ1¸ö´óĞ¡ÎªNµÄÊı¾İ½á¹¹Ğ´ÈëfpËùÖ¸ÏòµÄÎÄ¼ş 
 		{
 			printf("file write error\n");
 		}
-		p = p->next;                     //ä½¿pæŒ‡å‘ä¸‹ä¸€ä¸ªç»“ç‚¹ 
+		p = p->next;                     //Ê¹pÖ¸ÏòÏÂÒ»¸ö½áµã 
 	}
-	fclose(fp);              //å…³é—­æ–‡ä»¶ 
+	fclose(fp);              //¹Ø±ÕÎÄ¼ş 
 }
 
-void Clear_oneTable()//æ¸…ç†æŒ‡å®šé¤æ¡Œ
+void Clear_oneTable()//ÇåÀíÖ¸¶¨²Í×À
 {
 	int ID;
 	pTable p, head;
@@ -1693,7 +1693,7 @@ void Clear_oneTable()//æ¸…ç†æŒ‡å®šé¤æ¡Œ
 		head = readTableFile();
 		p = head;
 		toxy(28, 8);
-		printf("è¯·è¾“å…¥æ‚¨è¦æ¸…ç†çš„é¤æ¡Œç¼–å·:");
+		printf("ÇëÊäÈëÄúÒªÇåÀíµÄ²Í×À±àºÅ:");
 		scanf("%d", &ID);
 		while (p != NULL && p->ID != ID)
 		{
@@ -1702,13 +1702,13 @@ void Clear_oneTable()//æ¸…ç†æŒ‡å®šé¤æ¡Œ
 		if (p)
 		{
 			toxy(32, 10);
-			printf("æ­£åœ¨æ¸…ç†....");
+			printf("ÕıÔÚÇåÀí....");
 			p->People = 0;
-			strcpy(p->Username, "æ— ");
+			strcpy(p->Username, "ÎŞ");
 			Updata_Table(head);
 			Sleep(2000);
 			toxy(24, 10);
-			printf("æ¸…ç†æˆåŠŸï¼æ˜¯å¦ç»§ç»­ï¼Ÿ1.æ˜¯   2.å¦");
+			printf("ÇåÀí³É¹¦£¡ÊÇ·ñ¼ÌĞø£¿1.ÊÇ   2.·ñ");
 			while (1)
 			{
 				t = getch();
@@ -1723,34 +1723,34 @@ void Clear_oneTable()//æ¸…ç†æŒ‡å®šé¤æ¡Œ
 		else
 		{
 			toxy(32, 10);
-			printf("è¯¥é¤æ¡Œä¸å­˜åœ¨ï¼è¯·é‡æ–°è¾“å…¥");
+			printf("¸Ã²Í×À²»´æÔÚ£¡ÇëÖØĞÂÊäÈë");
 			Sleep(1500);
 		}
 	} while (1);
 }
 
-void Clear_allTable()//æ¸…ç†æ‰€æœ‰é¤æ¡Œ
+void Clear_allTable()//ÇåÀíËùÓĞ²Í×À
 {
 	system("cls");
 	toxy(32, 10);
-	printf("æ­£åœ¨æ¸…ç†....");
+	printf("ÕıÔÚÇåÀí....");
 	pTable p, head;
 	head = readTableFile();
 	p = head;
 	while (p != NULL)
 	{
 		p->People = 0;
-		strcpy(p->Username, "æ— ");
+		strcpy(p->Username, "ÎŞ");
 		p = p->next;
 	}
 	Updata_Table(head);
 	Sleep(2000);
 	toxy(32, 10);
-	printf("æ¸…ç†æˆåŠŸï¼æŒ‰ä»»æ„é”®ç»§ç»­");
+	printf("ÇåÀí³É¹¦£¡°´ÈÎÒâ¼ü¼ÌĞø");
 	getch();
 }
 
-void Check_User()//æŸ¥çœ‹ç”¨æˆ·
+void Check_User()//²é¿´ÓÃ»§
 {
 	char t;
 	do
@@ -1758,15 +1758,15 @@ void Check_User()//æŸ¥çœ‹ç”¨æˆ·
 		system("cls");
 		system("color 79");
 		toxy(32, 6);
-		printf("  æŸ¥çœ‹ç”¨æˆ·  ");
+		printf("  ²é¿´ÓÃ»§  ");
 		toxy(32, 7);
 		printf("----------------");
 		toxy(32, 9);
-		printf(" 1) æŸ¥æ‰¾ç”¨æˆ· ");
+		printf(" 1) ²éÕÒÓÃ»§ ");
 		toxy(32, 11);
-		printf(" 2) æ‰€æœ‰ç”¨æˆ· ");
+		printf(" 2) ËùÓĞÓÃ»§ ");
 		toxy(32, 13);
-		printf(" 3ï¼‰è¿”å›ä¸Šä¸€çº§");
+		printf(" 3£©·µ»ØÉÏÒ»¼¶");
 		t = getch();
 		switch (t)
 		{
@@ -1780,17 +1780,17 @@ void Check_User()//æŸ¥çœ‹ç”¨æˆ·
 	} while (1);
 }
 
-void Find_User()//æŸ¥æ‰¾ç”¨æˆ·
+void Find_User()//²éÕÒÓÃ»§
 {
 	system("cls");
 	char username[10];
 	pUser p, head = readUserFile();
 	p = head;
 	toxy(32, 10);
-	printf("è¯·è¾“å…¥æ‚¨è¦æŸ¥æ‰¾çš„ç”¨æˆ·åï¼š");
+	printf("ÇëÊäÈëÄúÒª²éÕÒµÄÓÃ»§Ãû£º");
 	scanf("%s", username);
 	toxy(24, 12);
-	printf("ç”¨æˆ·å\t\tä½™é¢\t\tä¼šå‘˜çŠ¶æ€");
+	printf("ÓÃ»§Ãû\t\tÓà¶î\t\t»áÔ±×´Ì¬");
 	while (p != NULL && strcmp(p->userName, username) != 0)
 		p = p->next;
 	if (p != NULL)
@@ -1801,14 +1801,14 @@ void Find_User()//æŸ¥æ‰¾ç”¨æˆ·
 	else
 	{
 		toxy(28, 14);
-		printf("æ²¡æœ‰æ‰¾åˆ°ç›¸å…³ä¿¡æ¯");
+		printf("Ã»ÓĞÕÒµ½Ïà¹ØĞÅÏ¢");
 	}
 	toxy(30, 16);
-	printf("è¯·æŒ‰ä»»æ„é”®è¿”å›");
+	printf("Çë°´ÈÎÒâ¼ü·µ»Ø");
 	getch();
 }
 
-void All_User()//æ‰“å°æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯
+void All_User()//´òÓ¡ËùÓĞÓÃ»§ĞÅÏ¢
 {
 	system("cls");
 	pUser p, head;
@@ -1816,13 +1816,13 @@ void All_User()//æ‰“å°æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯
 	p = head;
 	int i = 9;
 	toxy(32, 4);
-	printf("æ‰€æœ‰ç”¨æˆ·");
+	printf("ËùÓĞÓÃ»§");
 	toxy(20, 5);
 	printf("--------------------------------------------------");
 	toxy(30, 6);
-	printf("æŒ‰ä»»æ„é”®è¿”å›");
+	printf("°´ÈÎÒâ¼ü·µ»Ø");
 	toxy(24, 7);
-	printf("ç”¨æˆ·å\t\tä½™é¢\t\tä¼šå‘˜çŠ¶æ€");
+	printf("ÓÃ»§Ãû\t\tÓà¶î\t\t»áÔ±×´Ì¬");
 	while (p != NULL)
 	{
 		toxy(24, i);
@@ -1833,7 +1833,7 @@ void All_User()//æ‰“å°æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯
 	getch();
 }
 
-void All_VIP()//æŸ¥çœ‹æ‰€æœ‰VIP 
+void All_VIP()//²é¿´ËùÓĞVIP 
 {
 	system("cls");
 	system("color 79");
@@ -1842,9 +1842,9 @@ void All_VIP()//æŸ¥çœ‹æ‰€æœ‰VIP
 	p = head;
 	int i = 11;
 	toxy(32, 6);
-	printf("æœ¬åº—ä¼šå‘˜");
+	printf("±¾µê»áÔ±");
 	toxy(26, 8);
-	printf("ç”¨æˆ·å\t\tä½™é¢");
+	printf("ÓÃ»§Ãû\t\tÓà¶î");
 	toxy(24, 9);
 	printf("--------------------------------");
 	while (p != NULL)
@@ -1858,26 +1858,26 @@ void All_VIP()//æŸ¥çœ‹æ‰€æœ‰VIP
 		p = p->next;
 	}
 	toxy(30, i);
-	printf("æŒ‰ä»»æ„é”®è¿”å›");
+	printf("°´ÈÎÒâ¼ü·µ»Ø");
 	getch();
 }
 
 
-void History_Main()//å†å²æ“ä½œ
+void History_Main()//ÀúÊ·²Ù×÷
 {
 
 }
 
 void Change_Store(int index, int operation, int quantity)
 {
-	if (operation == 0 && store[index] >= min[index])//å‡åº“å­˜
+	if (operation == 0 && store[index] >= min[index])//¼õ¿â´æ
 		store[index] -= quantity;
-	if (operation == 1)//å¢åŠ åº“å­˜
+	if (operation == 1)//Ôö¼Ó¿â´æ
 		store[index] += quantity;
 }
 int main()
 {
-	Welcome();//è¿›å…¥æ¬¢è¿ç•Œé¢ 
+	Welcome();//½øÈë»¶Ó­½çÃæ 
 	return 0;
 }
 
